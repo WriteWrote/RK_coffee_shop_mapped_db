@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="creating init class-structure">
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="DBImitator:&#10;dicts, getters, initmethod">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBImitator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBImitator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
-      <workItem from="1718787427442" duration="3215000" />
+      <workItem from="1718787427442" duration="4985000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -71,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718789681073</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="DBImitator:&#10;dicts, getters, initmethod">
+      <created>1718791051471</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718791051471</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,7 +99,8 @@
     <MESSAGE value="init commit" />
     <MESSAGE value="attachment for readme:&#10;attachment_db_structure.png" />
     <MESSAGE value="creating init class-structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating init class-structure" />
+    <MESSAGE value="DBImitator:&#10;dicts, getters, initmethod" />
+    <option name="LAST_COMMIT_MESSAGE" value="DBImitator:&#10;dicts, getters, initmethod" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
