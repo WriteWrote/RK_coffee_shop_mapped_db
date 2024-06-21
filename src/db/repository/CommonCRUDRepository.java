@@ -13,15 +13,19 @@ public abstract class CommonCRUDRepository<T> {
 	 * findById
 	 * findAll
 	 */
-	public T create() {
-		return (T) new Object();    //there goes reflection?
+	public T save(T object) {
+		//todo shove it in map
+		return object;
 	}
 	
 	public void delete() {
 	
 	}
 	
-	public T update() {
+	public T update(T object) {
+		/**
+		 * rewrite by uuid value in map
+		 */
 		return (T) new Object();
 	}
 	
