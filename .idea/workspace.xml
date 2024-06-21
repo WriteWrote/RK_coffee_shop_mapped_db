@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="imitation of entities">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBImitator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBImitator.java" afterDir="false" />
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="init methods for db">
+      <change beforePath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
-      <workItem from="1718787427442" duration="8794000" />
+      <workItem from="1718787427442" duration="9508000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -88,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718823120508</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="init methods for db">
+      <created>1718994114640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718994114640</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,7 +117,8 @@
     <MESSAGE value="creating init class-structure" />
     <MESSAGE value="DBImitator:&#10;dicts, getters, initmethod" />
     <MESSAGE value="imitation of entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="imitation of entities" />
+    <MESSAGE value="init methods for db" />
+    <option name="LAST_COMMIT_MESSAGE" value="init methods for db" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
