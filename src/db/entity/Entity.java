@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Entity {
 	private UUID id;
 	
-	public UUID getId() {
+	public UUID getUUID() {
 		return id;
 	}
 	

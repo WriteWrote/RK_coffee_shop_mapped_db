@@ -4,6 +4,8 @@ import db.repository.ProductRepository;
 import model.dto.ProductDto;
 import model.mapper.ProductMapper;
 
+import java.util.UUID;
+
 public class ProductService {
 	private final ProductRepository repository;
 	private final ProductMapper mapper;
@@ -17,11 +19,15 @@ public class ProductService {
 		repository.save(mapper.toEntity(dto));
 	}
 	
-	public void deleteProduct() {
-		//todo not yet implemented
+	public void deleteProduct(UUID uuid) throws Exception {	//todo instead of throwing exception use try catch and return response
+		repository.delete(uuid);
 	}
 	
-	public void updateProduct() {
-		//todo not yet implemented
+	public void updateProduct(ProductDto dto) throws Exception {
+		repository.update(mapper.toEntity(dto));
+	}
+	
+	public ProductDto getById(UUID uuid) throws Exception {
+		return mapper.fromEntity(repository.findById(uuid));
 	}
 }

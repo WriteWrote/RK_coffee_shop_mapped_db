@@ -8,10 +8,10 @@ public abstract class CommonCRUDRepository<T extends Entity> {
 	private Map<UUID, T> table;
 	
 	public T save(T object) {
-		if (object.getId() == null) {
+		if (object.getUUID() == null) {
 			object.setId(UUID.randomUUID());
 		}
-		return table.put(object.getId(), object);
+		return table.put(object.getUUID(), object);
 	}
 	
 	public T delete(UUID uuid) throws Exception {
@@ -21,8 +21,8 @@ public abstract class CommonCRUDRepository<T extends Entity> {
 	}
 	
 	public T update(T object) throws Exception {
-		if (table.containsKey(object.getId()))
-			return table.put(object.getId(), object);
+		if (table.containsKey(object.getUUID()))
+			return table.put(object.getUUID(), object);
 		else throw new Exception("No element with this UUID in table");
 	}
 	

@@ -52,7 +52,7 @@ public class DBImitator {
 			orderLineTable.put(
 					UUID.randomUUID(),
 					new OrderLineEntity(
-							Objects.requireNonNull(productTable.entrySet().stream().skip(randomProductNumber).findFirst().orElse(null)).getValue().getId(),
+							Objects.requireNonNull(productTable.entrySet().stream().skip(randomProductNumber).findFirst().orElse(null)).getValue().getUUID(),
 							generatedUuid,
 							ThreadLocalRandom.current().nextInt(0, 10 + 1)
 					)
