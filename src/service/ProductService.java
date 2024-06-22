@@ -5,7 +5,9 @@ import model.Response;
 import model.dto.ProductDto;
 import model.mapper.ProductMapper;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ProductService {
 	private final ProductRepository repository;
@@ -21,25 +23,37 @@ public class ProductService {
 			ProductDto createdDto = mapper.fromEntity(repository.save(mapper.toEntity(dto)));
 			return new Response<>(200, "Product entity is created", createdDto);
 		} catch (Exception ex) {
-			return new Response<>(500, "Product entity is not created", null);
+			return new Response<>(500, ex.getMessage(), null);
 		}
 	}
 	
-	public void deleteProduct(UUID uuid) throws Exception {
-		repository.delete(uuid);
+	public Response<ProductDto> deleteProduct(UUID uuid) {
 		try {
-			
-			return new Response<>(200, "Product entity is created", createdDto);
+			repository.delete(uuid);
+			return new Response<>(200, "Product entity is deleted", null);
 		} catch (Exception ex) {
-			return new Response<>(500, "Product entity is not created", null);
+			return new Response<>(500, ex.getMessage(), null);
 		}
 	}
 	
-	public void updateProduct(ProductDto dto) throws Exception {
-		repository.update(mapper.toEntity(dto));
+	public Response<ProductDto> updateProduct(ProductDto dto) {
+		try {
+			ProductDto updatedDto = mapper.fromEntity(repository.update(mapper.toEntity(dto)));
+			return new Response<>(200, "Product entity is updated", updatedDto);
+		} catch (Exception ex) {
+			return new Response<>(500, ex.getMessage(), null);
+		}
 	}
 	
-	public ProductDto getById(UUID uuid) throws Exception {
-		return mapper.fromEntity(repository.findById(uuid));
+	public Response<ProductDto> getById(UUID uuid) {
+		try {
+			return new Response<>(200, "Product entity is found", mapper.fromEntity(repository.findById(uuid)));
+		} catch (Exception ex) {
+			return new Response<>(500, ex.getMessage(), null);
+		}
+	}
+	
+	public List<ProductDto> getAll() {
+		return repository.findAll().stream().map(mapper::fromEntity).collect(Collectors.toList());
 	}
 }

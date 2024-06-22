@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="services: ProductService.java&#10;ProductDto.java, ProductMapper.java">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/OrderLineService.java" beforeDir="false" />
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="services: ProductService.java&#10;Exception handling">
       <change beforePath="$PROJECT_DIR$/src/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +52,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="7226000" />
+      <workItem from="1719068136195" duration="7569000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -150,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719076463163</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="services: ProductService.java&#10;Exception handling">
+      <created>1719077326839</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719077326840</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +180,8 @@
     <MESSAGE value="extending entity-specified repositories" />
     <MESSAGE value="services: ProductService.java" />
     <MESSAGE value="services: ProductService.java&#10;ProductDto.java, ProductMapper.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="services: ProductService.java&#10;ProductDto.java, ProductMapper.java" />
+    <MESSAGE value="services: ProductService.java&#10;Exception handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="services: ProductService.java&#10;Exception handling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
