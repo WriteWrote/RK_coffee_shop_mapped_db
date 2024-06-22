@@ -2,36 +2,37 @@ package db.repository;
 
 import db.entity.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class CommonCRUDRepository<T extends Entity> {
 	private Map<UUID, T> table;
+	
 	public T save(T object) {
-		
-		//todo shove it in map
-		//todo create parent Entity class
-		return object;
+		if (object.getId() == null) {
+			object.setId(UUID.randomUUID());
+		}
+		return table.put(object.getId(), object);
 	}
 	
-	public void delete() {
-	
+	public T delete(UUID uuid) throws Exception {
+		if (table.containsKey(uuid))
+			return table.remove(uuid);
+		else throw new Exception("No element with this UUID in table");
 	}
 	
-	public T update(T object) {
-		/**
-		 * rewrite by uuid value in map
-		 */
-		return (T) new Object();
+	public T update(T object) throws Exception {
+		if (table.containsKey(object.getId()))
+			return table.put(object.getId(), object);
+		else throw new Exception("No element with this UUID in table");
 	}
 	
-	public T findById(UUID id) {
-		return (T) new Object();
+	public T findById(UUID uuid) throws Exception {
+		if (table.containsKey(uuid))
+			return table.get(uuid);
+		else throw new Exception("No element with this UUID in table");
 	}
 	
-	public List<T> findAll() {
-		return new ArrayList<T>();
+	public Collection<T> findAll() {
+		return table.values();
 	}
 }

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="template for abstract crud repository">
-      <change afterPath="$PROJECT_DIR$/src/db/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/OrderLineEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/OrderLineEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" afterDir="false" />
     </list>
@@ -56,7 +55,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="1534000" />
+      <workItem from="1719068136195" duration="3895000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -114,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718998703648</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="template for abstract crud repository">
+      <created>1719070703173</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719070703174</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

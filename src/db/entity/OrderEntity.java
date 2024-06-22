@@ -10,16 +10,12 @@ public class OrderEntity extends Entity {
 	private final String status;
 	
 	public OrderEntity(UUID id, UUID customerId, String customerPhone, String customerFIO, String address, String status) {
-		this.id = id;
+		this.setId(id);
 		this.customerId = customerId;
 		this.customerPhone = customerPhone;
 		this.customerFIO = customerFIO;
 		this.address = address;
 		this.status = status;
-	}
-	
-	public UUID getId() {
-		return id;
 	}
 	
 	public UUID getCustomerId() {
