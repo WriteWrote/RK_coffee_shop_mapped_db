@@ -2,8 +2,7 @@ package db.entity;
 
 import java.util.UUID;
 
-public class ProductEntity {
-    private final UUID id;
+public class ProductEntity extends Entity{
     private final String name;
     private final String description;
 

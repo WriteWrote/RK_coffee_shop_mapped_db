@@ -2,7 +2,7 @@ package db.entity;
 
 import java.util.UUID;
 
-public class OrderLineEntity {
+public class OrderLineEntity extends Entity{
     private final UUID productId;
     private final UUID orderId;
     private final int quantity;

@@ -1,20 +1,18 @@
 package db.repository;
 
+import db.entity.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-public abstract class CommonCRUDRepository<T> {
-	/**
-	 * CRUD repository
-	 * create
-	 * delete
-	 * update
-	 * findById
-	 * findAll
-	 */
+public abstract class CommonCRUDRepository<T extends Entity> {
+	private Map<UUID, T> table;
 	public T save(T object) {
+		
 		//todo shove it in map
+		//todo create parent Entity class
 		return object;
 	}
 	
