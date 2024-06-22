@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="template for abstract crud repository">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBImitator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBImitator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/repository/OrderLineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/OrderLineRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/ProductRepository.java" afterDir="false" />
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="extending entity-specified repositories">
+      <change afterPath="$PROJECT_DIR$/src/model/dto/ProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +53,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="4609000" />
+      <workItem from="1719068136195" duration="5064000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -128,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719073712416</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="extending entity-specified repositories">
+      <created>1719074431061</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719074431061</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +157,8 @@
     <MESSAGE value="imitation of entities" />
     <MESSAGE value="init methods for db" />
     <MESSAGE value="template for abstract crud repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="template for abstract crud repository" />
+    <MESSAGE value="extending entity-specified repositories" />
+    <option name="LAST_COMMIT_MESSAGE" value="extending entity-specified repositories" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
