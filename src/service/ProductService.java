@@ -1,6 +1,7 @@
 package service;
 
 import db.repository.ProductRepository;
+import model.Response;
 import model.dto.ProductDto;
 import model.mapper.ProductMapper;
 
@@ -15,12 +16,23 @@ public class ProductService {
 		this.mapper = mapper;
 	}
 	
-	public void createProduct(ProductDto dto) {  //todo decide whether use Responce or Dto
-		repository.save(mapper.toEntity(dto));
+	public Response<ProductDto> createProduct(ProductDto dto) {
+		try {
+			ProductDto createdDto = mapper.fromEntity(repository.save(mapper.toEntity(dto)));
+			return new Response<>(200, "Product entity is created", createdDto);
+		} catch (Exception ex) {
+			return new Response<>(500, "Product entity is not created", null);
+		}
 	}
 	
-	public void deleteProduct(UUID uuid) throws Exception {	//todo instead of throwing exception use try catch and return response
+	public void deleteProduct(UUID uuid) throws Exception {
 		repository.delete(uuid);
+		try {
+			
+			return new Response<>(200, "Product entity is created", createdDto);
+		} catch (Exception ex) {
+			return new Response<>(500, "Product entity is not created", null);
+		}
 	}
 	
 	public void updateProduct(ProductDto dto) throws Exception {

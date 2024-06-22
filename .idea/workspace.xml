@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="services: ProductService.java">
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="services: ProductService.java&#10;ProductDto.java, ProductMapper.java">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBImitator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBImitator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dto/ProductDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/OrderLineService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,15 +37,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/XXX/work_notes/CurrentTasks/RK/attachments/ТЗ кофемагазин 17-06-24_18-36.excalidraw.png&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/XXX/work_notes/CurrentTasks/RK/attachments/ТЗ кофемагазин 17-06-24_18-36.excalidraw.png",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +57,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="6424000" />
+      <workItem from="1719068136195" duration="7226000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -144,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719075163432</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="services: ProductService.java&#10;ProductDto.java, ProductMapper.java">
+      <created>1719076463163</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719076463163</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +177,8 @@
     <MESSAGE value="template for abstract crud repository" />
     <MESSAGE value="extending entity-specified repositories" />
     <MESSAGE value="services: ProductService.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="services: ProductService.java" />
+    <MESSAGE value="services: ProductService.java&#10;ProductDto.java, ProductMapper.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="services: ProductService.java&#10;ProductDto.java, ProductMapper.java" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
