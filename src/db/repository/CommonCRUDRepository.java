@@ -7,6 +7,10 @@ import java.util.*;
 public abstract class CommonCRUDRepository<T extends Entity> {
 	private Map<UUID, T> table;
 	
+	public Map<UUID, T> getTable() {
+		return table;
+	}
+	
 	public T save(T object) {
 		if (object.getUUID() == null) {
 			object.setId(UUID.randomUUID());
