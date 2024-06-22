@@ -1,7 +1,6 @@
 package service;
 
 import db.repository.ProductRepository;
-import model.Response;
 import model.dto.ProductDto;
 import model.mapper.ProductMapper;
 
@@ -18,7 +17,7 @@ public class ProductService {
 		this.mapper = mapper;
 	}
 	
-	public ProductDto createProduct(ProductDto dto) {
+	public ProductDto create(ProductDto dto) {
 		return mapper.fromEntity(repository.save(mapper.toEntity(dto)));
 //		try {
 //			ProductDto createdDto = mapper.fromEntity();
@@ -28,7 +27,7 @@ public class ProductService {
 //		}
 	}
 	
-	public void deleteProduct(UUID uuid) throws Exception {
+	public void delete(UUID uuid) throws Exception {
 		repository.delete(uuid);
 //		try {
 //
@@ -38,7 +37,7 @@ public class ProductService {
 //		}
 	}
 	
-	public ProductDto updateProduct(ProductDto dto) throws Exception {
+	public ProductDto update(ProductDto dto) throws Exception {
 		return mapper.fromEntity(repository.update(mapper.toEntity(dto)));
 //		try {
 //			ProductDto updatedDto = ;

@@ -36,11 +36,11 @@ public class DBImitator {
 			);
 		}
 		for (int i = 0; i < nOrders; i++) {
-			UUID generatedUuid = UUID.randomUUID();
+			UUID generatedOrderUuid = UUID.randomUUID();
 			ordersTable.put(
-					generatedUuid,
+					generatedOrderUuid,
 					new OrderEntity(
-							generatedUuid,
+							generatedOrderUuid,
 							null,
 							"88005553535",
 							"Ivanov Ivan Ivanovich",
@@ -49,11 +49,13 @@ public class DBImitator {
 					)
 			);
 			int randomProductNumber = ThreadLocalRandom.current().nextInt(0, productTable.size());
+			UUID generatedOrderLineUUID = UUID.randomUUID();
 			orderLineTable.put(
-					UUID.randomUUID(),
+					generatedOrderLineUUID,
 					new OrderLineEntity(
+							generatedOrderLineUUID,
+							generatedOrderUuid,
 							Objects.requireNonNull(productTable.entrySet().stream().skip(randomProductNumber).findFirst().orElse(null)).getValue().getUUID(),
-							generatedUuid,
 							ThreadLocalRandom.current().nextInt(0, 10 + 1)
 					)
 			);
