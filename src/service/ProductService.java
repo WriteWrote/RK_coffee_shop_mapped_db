@@ -18,39 +18,43 @@ public class ProductService {
 		this.mapper = mapper;
 	}
 	
-	public Response<ProductDto> createProduct(ProductDto dto) {
-		try {
-			ProductDto createdDto = mapper.fromEntity(repository.save(mapper.toEntity(dto)));
-			return new Response<>(200, "Product entity is created", createdDto);
-		} catch (Exception ex) {
-			return new Response<>(500, ex.getMessage(), null);
-		}
+	public ProductDto createProduct(ProductDto dto) {
+		return mapper.fromEntity(repository.save(mapper.toEntity(dto)));
+//		try {
+//			ProductDto createdDto = mapper.fromEntity();
+//			return new Response<>(200, "Product entity is created", createdDto);
+//		} catch (Exception ex) {
+//			return new Response<>(500, ex.getMessage(), null);
+//		}
 	}
 	
-	public Response<ProductDto> deleteProduct(UUID uuid) {
-		try {
-			repository.delete(uuid);
-			return new Response<>(200, "Product entity is deleted", null);
-		} catch (Exception ex) {
-			return new Response<>(500, ex.getMessage(), null);
-		}
+	public void deleteProduct(UUID uuid) throws Exception {
+		repository.delete(uuid);
+//		try {
+//
+//			return new Response<>(200, "Product entity is deleted", null);
+//		} catch (Exception ex) {
+//			return new Response<>(500, ex.getMessage(), null);
+//		}
 	}
 	
-	public Response<ProductDto> updateProduct(ProductDto dto) {
-		try {
-			ProductDto updatedDto = mapper.fromEntity(repository.update(mapper.toEntity(dto)));
-			return new Response<>(200, "Product entity is updated", updatedDto);
-		} catch (Exception ex) {
-			return new Response<>(500, ex.getMessage(), null);
-		}
+	public ProductDto updateProduct(ProductDto dto) throws Exception {
+		return mapper.fromEntity(repository.update(mapper.toEntity(dto)));
+//		try {
+//			ProductDto updatedDto = ;
+//			return new Response<>(200, "Product entity is updated", updatedDto);
+//		} catch (Exception ex) {
+//			return new Response<>(500, ex.getMessage(), null);
+//		}
 	}
 	
-	public Response<ProductDto> getById(UUID uuid) {
-		try {
-			return new Response<>(200, "Product entity is found", mapper.fromEntity(repository.findById(uuid)));
-		} catch (Exception ex) {
-			return new Response<>(500, ex.getMessage(), null);
-		}
+	public ProductDto getById(UUID uuid) throws Exception {
+		return mapper.fromEntity(repository.findById(uuid));
+//		try {
+//			return new Response<>(200, "Product entity is found", );
+//		} catch (Exception ex) {
+//			return new Response<>(500, ex.getMessage(), null);
+//		}
 	}
 	
 	public List<ProductDto> getAll() {
