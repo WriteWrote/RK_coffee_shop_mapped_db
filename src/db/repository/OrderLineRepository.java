@@ -1,4 +1,6 @@
 package db.repository;
 
-public class OrderLineRepository {
+import db.entity.OrderLineEntity;
+
+public class OrderLineRepository extends CommonCRUDRepository<OrderLineEntity> {
 }

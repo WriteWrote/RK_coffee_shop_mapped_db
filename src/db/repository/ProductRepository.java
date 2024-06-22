@@ -1,4 +1,6 @@
 package db.repository;
 
-public class ProductRepository {
+import db.entity.ProductEntity;
+
+public class ProductRepository extends CommonCRUDRepository<ProductEntity>{
 }

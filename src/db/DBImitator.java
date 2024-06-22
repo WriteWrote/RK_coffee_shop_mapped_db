@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DBImitator {
+	//todo change later
 	private Map<UUID, OrderEntity> ordersTable;
 	private Map<UUID, OrderLineEntity> orderLineTable;
 	private Map<UUID, ProductEntity> productTable;

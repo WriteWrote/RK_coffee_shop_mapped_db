@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="template for abstract crud repository">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/OrderEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/ProductEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/DBImitator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBImitator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/repository/OrderLineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/OrderLineRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/ProductRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +56,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="3895000" />
+      <workItem from="1719068136195" duration="4609000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -120,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719070703174</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="template for abstract crud repository">
+      <created>1719073712416</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719073712416</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
