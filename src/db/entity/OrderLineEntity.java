@@ -8,7 +8,7 @@ public class OrderLineEntity extends Entity {
 	private final int quantity;
 	
 	public OrderLineEntity(UUID uuid, UUID orderId, UUID productId, int quantity) {
-		this.setId(uuid);
+		super(uuid);
 		this.productId = productId;
 		this.orderId = orderId;
 		this.quantity = quantity;

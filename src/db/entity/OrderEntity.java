@@ -9,8 +9,8 @@ public class OrderEntity extends Entity {
 	private final String address;
 	private final String status;
 	
-	public OrderEntity(UUID id, UUID customerId, String customerPhone, String customerFIO, String address, String status) {
-		this.setId(id);
+	public OrderEntity(UUID uuid, UUID customerId, String customerPhone, String customerFIO, String address, String status) {
+		super(uuid);
 		this.customerId = customerId;
 		this.customerPhone = customerPhone;
 		this.customerFIO = customerFIO;
