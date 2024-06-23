@@ -18,8 +18,6 @@ public class ProductController {
 	
 	public void create(ProductDto dto) {
 		System.out.println(handler.handle(() -> service.create(dto)));
-		//todo toString
-		//todo and for entity too
 	}
 	
 	public void delete(UUID uuid) {

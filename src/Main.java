@@ -8,6 +8,9 @@ import db.repository.OrderRepository;
 import db.repository.ProductRepository;
 import db.repository.UserRepository;
 
+import java.util.Objects;
+import java.util.Scanner;
+
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("Hello world!");
@@ -24,6 +27,9 @@ public class Main {
 		OrderLineRepository orderLineRepository = new OrderLineRepository();
 		orderLineRepository.setTable(new DBProvider<OrderLineEntity>().initEmptyTable());
 		
-		
+		Utils.printInstruction();
+		Utils.play();
+//		UserEntity entity = new UserEntity(UUID.randomUUID(), "somelogin", "somepassword");
+//		System.out.println(entity);
 	}
 }
