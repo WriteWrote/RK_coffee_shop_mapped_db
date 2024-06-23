@@ -1,7 +1,7 @@
 package service;
 
 import db.repository.ProductRepository;
-import model.dto.ProductDto;
+import dto.ProductDto;
 import service.mapper.ProductMapper;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package controller;
 
 import controller.handler.ExceptionHandler;
 import controller.handler.Response;
-import model.dto.CreateUserDto;
-import model.dto.UserDto;
+import dto.CreateUserDto;
+import dto.UserDto;
 import service.UserService;
 
 import java.util.List;

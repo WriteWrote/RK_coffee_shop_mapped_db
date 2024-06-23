@@ -19,7 +19,8 @@ public abstract class CommonCRUDRepository<T extends Entity> {
 		if (object.getUUID() == null) {
 			object.setUuid(UUID.randomUUID());
 		}
-		return table.put(object.getUUID(), object);
+		table.put(object.getUUID(), object);
+		return table.get(object.getUUID());
 	}
 	
 	public T delete(UUID uuid) throws Exception {

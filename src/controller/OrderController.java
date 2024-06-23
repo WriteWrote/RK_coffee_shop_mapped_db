@@ -2,7 +2,7 @@ package controller;
 
 import controller.handler.ExceptionHandler;
 import controller.handler.Response;
-import model.dto.OrderDto;
+import dto.OrderDto;
 import service.OrderService;
 
 import java.util.List;

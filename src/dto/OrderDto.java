@@ -1,4 +1,4 @@
-package model.dto;
+package dto;
 
 import java.util.Map;
 import java.util.UUID;
@@ -20,6 +20,16 @@ public class OrderDto {
 		this.fio = fio;
 		this.address = address;
 		this.status = status;
+	}
+	
+	public OrderDto(UUID uuid, UUID customerID, String phone, String fio, String address, String status, Map<UUID, Integer> products) {
+		this.uuid = uuid;
+		this.customerID = customerID;
+		this.phone = phone;
+		this.fio = fio;
+		this.address = address;
+		this.status = status;
+		this.products = products;
 	}
 	
 	public UUID getUuid() {

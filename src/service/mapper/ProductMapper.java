@@ -1,9 +1,12 @@
 package service.mapper;
 
 import db.entity.ProductEntity;
-import model.dto.ProductDto;
+import dto.ProductDto;
 
 public class ProductMapper {
+	public ProductMapper() {
+	}
+	
 	public ProductEntity toEntity(ProductDto dto) {
 		return new ProductEntity(
 				dto.getUuid(),

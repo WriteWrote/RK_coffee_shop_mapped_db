@@ -1,8 +1,8 @@
 package service;
 
 import db.repository.UserRepository;
-import model.dto.CreateUserDto;
-import model.dto.UserDto;
+import dto.CreateUserDto;
+import dto.UserDto;
 import service.mapper.CreateUserMapper;
 
 import java.util.List;

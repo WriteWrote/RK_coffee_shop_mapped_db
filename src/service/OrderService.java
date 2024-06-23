@@ -4,7 +4,7 @@ import db.entity.OrderEntity;
 import db.entity.OrderLineEntity;
 import db.repository.OrderLineRepository;
 import db.repository.OrderRepository;
-import model.dto.OrderDto;
+import dto.OrderDto;
 import service.mapper.OrderLineMapper;
 import service.mapper.OrderMapper;
 

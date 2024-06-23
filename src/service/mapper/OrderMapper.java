@@ -1,9 +1,12 @@
 package service.mapper;
 
 import db.entity.OrderEntity;
-import model.dto.OrderDto;
+import dto.OrderDto;
 
 public class OrderMapper {
+	public OrderMapper() {
+	}
+	
 	public OrderEntity toEntity(OrderDto dto) {
 		return new OrderEntity(
 				dto.getUuid(),

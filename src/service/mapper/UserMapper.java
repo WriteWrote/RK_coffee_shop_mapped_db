@@ -1,10 +1,13 @@
 package service.mapper;
 
 import db.entity.UserEntity;
-import model.dto.CreateUserDto;
-import model.dto.UserDto;
+import dto.CreateUserDto;
+import dto.UserDto;
 
 public class UserMapper {
+	public UserMapper() {
+	}
+	
 	public UserEntity toEntity(UserDto dto) {
 		return new UserEntity(
 				dto.getUuid(),

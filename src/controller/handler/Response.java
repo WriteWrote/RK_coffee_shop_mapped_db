@@ -22,4 +22,13 @@ public class Response<T> {
 	public T getDto() {
 		return dto;
 	}
+	
+	@Override
+	public String toString() {
+		return "Response{" +
+				"code=" + code +
+				", message='" + message + '\'' +
+				", dto=" + dto +
+				'}';
+	}
 }
