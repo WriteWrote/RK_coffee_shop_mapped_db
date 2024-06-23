@@ -1,4 +1,4 @@
-package controller.response_handling;
+package controller.handler;
 
 public class Response<T> {
 	private final Integer code;

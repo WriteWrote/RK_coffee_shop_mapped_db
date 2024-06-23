@@ -1,6 +1,7 @@
 package controller;
 
-import controller.response_handling.ExceptionHandler;
+import controller.handler.ExceptionHandler;
+import controller.handler.Response;
 import model.dto.ProductDto;
 import service.ProductService;
 
@@ -16,26 +17,26 @@ public class ProductController {
 		this.handler = handler;
 	}
 	
-	public void create(ProductDto dto) {
-		System.out.println(handler.handle(() -> service.create(dto)));
+	public Response<?> create(ProductDto dto) {
+		return handler.handle(() -> service.create(dto));
 	}
 	
-	public void delete(UUID uuid) {
-		System.out.println(handler.handle(() -> {
+	public Response<?> delete(UUID uuid) {
+		return handler.handle(() -> {
 			service.delete(uuid);
 			return null;
-		}));
+		});
 	}
 	
-	public void update(ProductDto dto) {
-		System.out.println(handler.handle(() -> service.update(dto)));
+	public Response<?> update(ProductDto dto) {
+		return handler.handle(() -> service.update(dto));
 	}
 	
-	public void getById(UUID uuid) {
-		System.out.println(handler.handle(() -> service.getById(uuid)));
+	public Response<?> getById(UUID uuid) {
+		return handler.handle(() -> service.getById(uuid));
 	}
 	
-	public void getAll() {
-		System.out.println(new ExceptionHandler<List<ProductDto>>().handle(service::getAll));
+	public Response<?> getAll() {
+		return new ExceptionHandler<List<ProductDto>>().handle(service::getAll);
 	}
 }

@@ -1,6 +1,7 @@
 package controller;
 
-import controller.response_handling.ExceptionHandler;
+import controller.handler.ExceptionHandler;
+import controller.handler.Response;
 import model.dto.OrderDto;
 import service.OrderService;
 
@@ -16,18 +17,26 @@ public class OrderController {
 		this.handler = handler;
 	}
 	
-	public void create(OrderDto dto) { System.out.println(handler.handle(() -> service.create(dto))); }
-	
-	public void delete(UUID uuid) {
-		System.out.println(handler.handle(() -> {
-			service.delete(uuid);
-			return null;
-		}));
+	public Response<?> create(OrderDto dto) {
+		return handler.handle(() -> service.create(dto));
 	}
 	
-	public void update(OrderDto dto) { System.out.println(handler.handle(() -> service.update(dto))); }
+	public Response<?> delete(UUID uuid) {
+		return handler.handle(() -> {
+			service.delete(uuid);
+			return null;
+		});
+	}
 	
-	public void getById(UUID uuid) { System.out.println(handler.handle(() -> service.getById(uuid))); }
+	public Response<?> update(OrderDto dto) {
+		return handler.handle(() -> service.update(dto));
+	}
 	
-	public void getAll() { System.out.println(new ExceptionHandler<List<OrderDto>>().handle(service::getAll)); }
+	public Response<?> getById(UUID uuid) {
+		return handler.handle(() -> service.getById(uuid));
+	}
+	
+	public Response<?> getAll() {
+		return new ExceptionHandler<List<OrderDto>>().handle(service::getAll);
+	}
 }

@@ -1,4 +1,4 @@
-package controller.response_handling;
+package controller.handler;
 
 import java.util.concurrent.Callable;
 
