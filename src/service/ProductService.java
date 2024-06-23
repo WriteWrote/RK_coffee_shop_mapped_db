@@ -19,41 +19,18 @@ public class ProductService {
 	
 	public ProductDto create(ProductDto dto) {
 		return mapper.fromEntity(repository.save(mapper.toEntity(dto)));
-//		try {
-//			ProductDto createdDto = mapper.fromEntity();
-//			return new Response<>(200, "Product entity is created", createdDto);
-//		} catch (Exception ex) {
-//			return new Response<>(500, ex.getMessage(), null);
-//		}
 	}
 	
 	public void delete(UUID uuid) throws Exception {
 		repository.delete(uuid);
-//		try {
-//
-//			return new Response<>(200, "Product entity is deleted", null);
-//		} catch (Exception ex) {
-//			return new Response<>(500, ex.getMessage(), null);
-//		}
 	}
 	
 	public ProductDto update(ProductDto dto) throws Exception {
 		return mapper.fromEntity(repository.update(mapper.toEntity(dto)));
-//		try {
-//			ProductDto updatedDto = ;
-//			return new Response<>(200, "Product entity is updated", updatedDto);
-//		} catch (Exception ex) {
-//			return new Response<>(500, ex.getMessage(), null);
-//		}
 	}
 	
 	public ProductDto getById(UUID uuid) throws Exception {
 		return mapper.fromEntity(repository.findById(uuid));
-//		try {
-//			return new Response<>(200, "Product entity is found", );
-//		} catch (Exception ex) {
-//			return new Response<>(500, ex.getMessage(), null);
-//		}
 	}
 	
 	public List<ProductDto> getAll() {

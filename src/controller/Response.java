@@ -1,14 +1,14 @@
-package model;
+package controller;
 
 public class Response<T> {
 	private final Integer code;
 	private final String message;
 	private final T dto;
 	
-	public Response(Integer code, String message, T dto) {
+	public Response(Integer code, String message, T body) {
 		this.code = code;
 		this.message = message;
-		this.dto = dto;
+		this.dto = body;
 	}
 	
 	public Integer getCode() {
