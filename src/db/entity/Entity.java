@@ -3,7 +3,7 @@ package db.entity;
 import java.util.UUID;
 
 public class Entity {
-	private final UUID id;
+	private UUID id;
 	
 	public Entity(UUID id) {
 		this.id = id;
@@ -11,5 +11,9 @@ public class Entity {
 	
 	public UUID getUUID() {
 		return id;
+	}
+	
+	public void setId(UUID id) {
+		this.id = id;
 	}
 }

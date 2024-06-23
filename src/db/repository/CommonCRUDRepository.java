@@ -7,6 +7,10 @@ import java.util.*;
 public abstract class CommonCRUDRepository<T extends Entity> {
 	private Map<UUID, T> table;
 	
+	public void setTable(Map<UUID, T> table) {
+		this.table = table;
+	}
+	
 	public Map<UUID, T> getTable() {
 		return table;
 	}
