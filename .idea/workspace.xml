@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="services: OrderService.java">
+    <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="controllers: ProductController.java&#10;simple Response">
+      <change afterPath="$PROJECT_DIR$/src/controller/ExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +54,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="13313000" />
+      <workItem from="1719068136195" duration="16885000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -183,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719085039919</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="controllers: ProductController.java&#10;simple Response">
+      <created>1719131019880</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1719131019880</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +219,8 @@
     <MESSAGE value="services: ProductService.java&#10;ProductDto.java, ProductMapper.java" />
     <MESSAGE value="services: ProductService.java&#10;Exception handling" />
     <MESSAGE value="services: OrderService.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="services: OrderService.java" />
+    <MESSAGE value="controllers: ProductController.java&#10;simple Response" />
+    <option name="LAST_COMMIT_MESSAGE" value="controllers: ProductController.java&#10;simple Response" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

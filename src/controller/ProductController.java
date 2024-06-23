@@ -3,49 +3,40 @@ package controller;
 import model.dto.ProductDto;
 import service.ProductService;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ProductController {
-	private ProductService service;
+	private final ProductService service;
+	private final ExceptionHandler<ProductDto> handler;
+	
+	public ProductController(ProductService service, ExceptionHandler<ProductDto> handler) {
+		this.service = service;
+		this.handler = handler;
+	}
 	
 	public void create(ProductDto dto) {
-		try {    //todo toString
-			//todo and for entity too
-			ProductDto createdDto = service.create(dto);
-			System.out.println(new Response<>(200, "Product entity is created", createdDto));
-		} catch (Exception ex) {
-			System.out.println(new Response<>(500, ex.getMessage(), ex));
-		}
+		System.out.println(handler.handle(() -> service.create(dto)));
+		//todo toString
+		//todo and for entity too
 	}
 	
 	public void delete(UUID uuid) {
-		try {
+		System.out.println(handler.handle(() -> {
 			service.delete(uuid);
-			System.out.println(new Response<>(200, "Product entity is deleted", null));
-		} catch (Exception ex) {
-			System.out.println(new Response<>(500, ex.getMessage(), ex));
-		}
+			return null;
+		}));
 	}
 	
 	public void update(ProductDto dto) {
-		try {
-			ProductDto updatedDto = service.update(dto);
-			System.out.println(new Response<>(200, "Product entity is updated", updatedDto));
-		} catch (Exception ex) {
-			System.out.println(new Response<>(500, ex.getMessage(), ex));
-		}
+		System.out.println(handler.handle(() -> service.update(dto)));
 	}
 	
 	public void getById(UUID uuid) {
-		try {
-			ProductDto dto = service.getById(uuid);
-			System.out.println(new Response<>(200, "Product entity is found", dto));
-		} catch (Exception ex) {
-			System.out.println(new Response<>(500, ex.getMessage(), ex));
-		}
+		System.out.println(handler.handle(() -> service.getById(uuid)));
 	}
 	
 	public void getAll() {
-		System.out.println(new Response<>(200, "List of all Products", service.getAll()));
+		System.out.println(new ExceptionHandler<List<ProductDto>>().handle(service::getAll));
 	}
 }
