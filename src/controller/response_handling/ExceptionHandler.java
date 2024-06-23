@@ -1,6 +1,4 @@
-package controller;
-
-import db.entity.Entity;
+package controller.response_handling;
 
 import java.util.concurrent.Callable;
 
