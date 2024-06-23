@@ -1,6 +1,5 @@
-package model.mapper;
+package service.mapper;
 
-import db.entity.OrderEntity;
 import db.entity.OrderLineEntity;
 
 import java.util.List;

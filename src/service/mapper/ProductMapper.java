@@ -1,4 +1,4 @@
-package model.mapper;
+package service.mapper;
 
 import db.entity.ProductEntity;
 import model.dto.ProductDto;

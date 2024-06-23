@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12e76cd9-6642-4353-b35c-038d56a7e6b1" name="Changes" comment="Main.java code">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/response_handling/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handler/ExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/response_handling/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handler/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/DBProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/repository/CommonCRUDRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/mapper/CreateUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/mapper/CreateUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/mapper/OrderLineMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/mapper/OrderLineMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +73,7 @@
       <updated>1718642839864</updated>
       <workItem from="1718642843765" duration="646000" />
       <workItem from="1718787427442" duration="11759000" />
-      <workItem from="1719068136195" duration="23074000" />
+      <workItem from="1719068136195" duration="23498000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1718643115602</created>
@@ -244,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719152240119</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Main.java code">
+      <created>1719166562814</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1719166562815</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +299,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>32</line>
+          <line>29</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

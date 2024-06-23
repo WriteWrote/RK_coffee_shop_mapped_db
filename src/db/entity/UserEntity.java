@@ -12,7 +12,7 @@ public class UserEntity extends Entity {
 		this.password = password;
 	}
 	
-	public UserEntity(UUID uuid,String login) {
+	public UserEntity(UUID uuid, String login) {
 		super(uuid);
 		this.login = login;
 	}

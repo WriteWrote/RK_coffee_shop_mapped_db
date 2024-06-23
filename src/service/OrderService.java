@@ -5,8 +5,8 @@ import db.entity.OrderLineEntity;
 import db.repository.OrderLineRepository;
 import db.repository.OrderRepository;
 import model.dto.OrderDto;
-import model.mapper.OrderLineMapper;
-import model.mapper.OrderMapper;
+import service.mapper.OrderLineMapper;
+import service.mapper.OrderMapper;
 
 import java.util.ArrayList;
 import java.util.List;

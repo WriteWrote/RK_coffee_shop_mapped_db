@@ -2,7 +2,7 @@ package service;
 
 import db.repository.ProductRepository;
 import model.dto.ProductDto;
-import model.mapper.ProductMapper;
+import service.mapper.ProductMapper;
 
 import java.util.List;
 import java.util.UUID;

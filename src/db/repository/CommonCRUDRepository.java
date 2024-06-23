@@ -17,7 +17,7 @@ public abstract class CommonCRUDRepository<T extends Entity> {
 	
 	public T save(T object) {
 		if (object.getUUID() == null) {
-			object.setId(UUID.randomUUID());
+			object.setUuid(UUID.randomUUID());
 		}
 		return table.put(object.getUUID(), object);
 	}

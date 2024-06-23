@@ -1,4 +1,4 @@
-package model.mapper;
+package service.mapper;
 
 import db.entity.UserEntity;
 import model.dto.CreateUserDto;

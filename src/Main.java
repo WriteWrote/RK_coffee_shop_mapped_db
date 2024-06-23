@@ -1,4 +1,4 @@
-import db.DBProvider;
+import db.DBFactory;
 import db.entity.OrderEntity;
 import db.entity.OrderLineEntity;
 import db.entity.ProductEntity;
@@ -8,24 +8,21 @@ import db.repository.OrderRepository;
 import db.repository.ProductRepository;
 import db.repository.UserRepository;
 
-import java.util.Objects;
-import java.util.Scanner;
-
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("Hello world!");
 		
 		UserRepository userRepository = new UserRepository();
-		userRepository.setTable(new DBProvider<UserEntity>().initEmptyTable());
+		userRepository.setTable(new DBFactory<UserEntity>().initEmptyTable());
 		
 		ProductRepository productRepository = new ProductRepository();
-		productRepository.setTable(new DBProvider<ProductEntity>().initEmptyTable());
+		productRepository.setTable(new DBFactory<ProductEntity>().initEmptyTable());
 		
 		OrderRepository orderRepository = new OrderRepository();
-		orderRepository.setTable(new DBProvider<OrderEntity>().initEmptyTable());
+		orderRepository.setTable(new DBFactory<OrderEntity>().initEmptyTable());
 		
 		OrderLineRepository orderLineRepository = new OrderLineRepository();
-		orderLineRepository.setTable(new DBProvider<OrderLineEntity>().initEmptyTable());
+		orderLineRepository.setTable(new DBFactory<OrderLineEntity>().initEmptyTable());
 		
 		Utils.printInstruction();
 		Utils.play();

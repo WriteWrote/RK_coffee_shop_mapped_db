@@ -3,7 +3,7 @@ package service;
 import db.repository.UserRepository;
 import model.dto.CreateUserDto;
 import model.dto.UserDto;
-import model.mapper.CreateUserMapper;
+import service.mapper.CreateUserMapper;
 
 import java.util.List;
 import java.util.UUID;

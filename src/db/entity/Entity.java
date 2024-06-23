@@ -8,30 +8,32 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class Entity {
-	private UUID id;
+	private UUID uuid;
 	
-	public Entity(UUID id) {
-		this.id = id;
+	public Entity(UUID uuid) {
+		this.uuid = uuid;
 	}
 	
 	public UUID getUUID() {
-		return id;
+		return uuid;
 	}
 	
-	public void setId(UUID id) {
-		this.id = id;
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 	
 	@Override
 	public String toString() {
 		List<Field> fields = Arrays.stream(this.getClass().getDeclaredFields()).collect(Collectors.toList());
-		AtomicReference<String> result = new AtomicReference<>("Entity { uuid: " + this.id + "; ");
+		AtomicReference<String> result = new AtomicReference<>("Entity { uuid: " + this.uuid + "; ");
 		fields.forEach(it -> {
 			try {
 				it.setAccessible(true);
 				result.set(result + it.getName() + ": " + it.get(this) + "; ");
 			} catch (IllegalAccessException e) {
 				throw new RuntimeException(e);
+			} finally {
+				it.setAccessible(false);
 			}
 		});
 		return result + "}";
