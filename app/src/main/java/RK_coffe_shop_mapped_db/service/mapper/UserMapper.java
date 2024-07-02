@@ -4,7 +4,9 @@ package RK_coffe_shop_mapped_db.service.mapper;
 import RK_coffe_shop_mapped_db.db.entity.UserEntity;
 import RK_coffe_shop_mapped_db.dto.CreateUserDto;
 import RK_coffe_shop_mapped_db.dto.UserDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 	public UserMapper() {
 	}
