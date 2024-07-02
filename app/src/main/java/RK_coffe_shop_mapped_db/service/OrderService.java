@@ -7,18 +7,21 @@ import RK_coffe_shop_mapped_db.db.repository.OrderRepository;
 import RK_coffe_shop_mapped_db.dto.OrderDto;
 import RK_coffe_shop_mapped_db.service.mapper.OrderLineMapper;
 import RK_coffe_shop_mapped_db.service.mapper.OrderMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
+@Service
 public class OrderService {
 	private final OrderRepository orderRepository;
 	private final OrderLineRepository orderLineRepository;
 	private final OrderMapper orderMapper;
 	private final OrderLineMapper orderLineMapper;
 	
+	@Autowired
 	public OrderService(OrderRepository orderRepository, OrderLineRepository orderLineRepository, OrderMapper orderMapper, OrderLineMapper orderLineMapper) {
 		this.orderRepository = orderRepository;
 		this.orderLineRepository = orderLineRepository;

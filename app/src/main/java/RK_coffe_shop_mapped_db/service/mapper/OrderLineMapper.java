@@ -2,12 +2,14 @@ package RK_coffe_shop_mapped_db.service.mapper;
 
 
 import RK_coffe_shop_mapped_db.db.entity.OrderLineEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Component
 public class OrderLineMapper {
 	public OrderLineMapper() {
 	}

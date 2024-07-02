@@ -3,7 +3,9 @@ package RK_coffe_shop_mapped_db.service.mapper;
 
 import RK_coffe_shop_mapped_db.db.entity.OrderEntity;
 import RK_coffe_shop_mapped_db.dto.OrderDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderMapper {
 	public OrderMapper() {
 	}
