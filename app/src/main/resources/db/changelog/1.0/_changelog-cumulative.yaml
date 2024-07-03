@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+  - changeSet:
+      id: RK-001-030720242224
+      author: Ellina Obukhova
+      comment: Create DB Structure
+      runOnChange: true
+      changes:
+        - sqlFile:
+            path: RK-001-030720242224.sql
+            relativeToChangelogFile: true

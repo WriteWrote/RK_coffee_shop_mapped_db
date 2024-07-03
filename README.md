@@ -26,4 +26,4 @@
     - пароль
 
 ### Схема сущностей для БД
-![](resources/readme_attachments/attachment_db_structure.png)
+![](static/readme_attachments/attachment_db_structure.png)
