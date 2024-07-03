@@ -1,21 +1,13 @@
 package RK_coffe_shop_mapped_db.dto;
 
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
+@RequiredArgsConstructor
+@Getter
 public class UserDto {
-	private final UUID uuid;
-	private final String login;
-	
-	public UserDto(UUID uuid, String login) {
-		this.uuid = uuid;
-		this.login = login;
-	}
-	
-	public UUID getUuid() {
-		return uuid;
-	}
-	
-	public String getLogin() {
-		return login;
-	}
+	private UUID uuid;
+	private String login;
 }
