@@ -1,22 +1,16 @@
 package RK_coffe_shop_mapped_db.db.entity;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.UUID;
 
-public class OrderEntity extends Entity {
+@Table(name = "", schema = "")
+public class OrderEntity {
 	private final UUID customerId;
 	private final String customerPhone;
 	private final String customerFIO;
 	private final String address;
 	private final String status;
-	
-	public OrderEntity(UUID uuid, UUID customerId, String customerPhone, String customerFIO, String address, String status) {
-		super(uuid);
-		this.customerId = customerId;
-		this.customerPhone = customerPhone;
-		this.customerFIO = customerFIO;
-		this.address = address;
-		this.status = status;
-	}
 	
 	public UUID getCustomerId() {
 		return customerId;

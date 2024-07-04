@@ -1,39 +1,7 @@
 package RK_coffe_shop_mapped_db;
 
-import RK_coffe_shop_mapped_db.controller.OrderController;
-import RK_coffe_shop_mapped_db.controller.ProductController;
-import RK_coffe_shop_mapped_db.controller.UserController;
-import RK_coffe_shop_mapped_db.controller.handler.ExceptionHandler;
-import RK_coffe_shop_mapped_db.db.DBFactory;
-import RK_coffe_shop_mapped_db.db.entity.OrderEntity;
-import RK_coffe_shop_mapped_db.db.entity.OrderLineEntity;
-import RK_coffe_shop_mapped_db.db.entity.ProductEntity;
-import RK_coffe_shop_mapped_db.db.entity.UserEntity;
-import RK_coffe_shop_mapped_db.db.repository.OrderLineRepository;
-import RK_coffe_shop_mapped_db.db.repository.OrderRepository;
-import RK_coffe_shop_mapped_db.db.repository.ProductRepository;
-import RK_coffe_shop_mapped_db.db.repository.UserRepository;
-import RK_coffe_shop_mapped_db.dto.CreateUserDto;
-import RK_coffe_shop_mapped_db.dto.OrderDto;
-import RK_coffe_shop_mapped_db.dto.ProductDto;
-import RK_coffe_shop_mapped_db.service.OrderService;
-import RK_coffe_shop_mapped_db.service.ProductService;
-import RK_coffe_shop_mapped_db.service.UserService;
-import RK_coffe_shop_mapped_db.service.mapper.CreateUserMapper;
-import RK_coffe_shop_mapped_db.service.mapper.OrderLineMapper;
-import RK_coffe_shop_mapped_db.service.mapper.OrderMapper;
-import RK_coffe_shop_mapped_db.service.mapper.ProductMapper;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class App {
