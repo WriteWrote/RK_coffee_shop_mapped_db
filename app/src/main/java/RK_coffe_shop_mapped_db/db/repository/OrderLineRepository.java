@@ -10,10 +10,5 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface OrderLineRepository extends CrudRepository<OrderLineEntity, UUID> {
-	//todo fix implementation
-//	public List<OrderLineEntity> findAllByOrderId(UUID orderId) {
-//		return this.getTable().values().stream()
-//				.filter(orderLineEntity -> orderLineEntity.getOrderId().equals(orderId))
-//				.collect(Collectors.toList());
-//	}
+	List<OrderLineEntity> findOrderLineEntitiesByOrderId(UUID orderId);
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 @Service
 public class OrderService {
 	private final OrderRepository orderRepository;
@@ -37,10 +38,8 @@ public class OrderService {
 	}
 	
 	public void delete(UUID uuid) throws Exception {
-		for (OrderLineEntity it : orderLineRepository.findAllByOrderId(uuid)) {
-			orderLineRepository.delete(it.getUUID());
-		}
-		orderRepository.delete(uuid);
+		orderLineRepository.deleteAll(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
+		orderRepository.deleteById(uuid);
 	}
 	
 	/**
@@ -48,13 +47,14 @@ public class OrderService {
 	 * только поля получателя: Фио, адрес, статус заказа и т.д.
 	 */
 	public OrderDto update(OrderDto dto) throws Exception {
-		orderRepository.update(orderMapper.toEntity(dto));
-		return dto;
+		if (orderRepository.existsById(dto.getUuid()))
+			return orderMapper.fromEntity(orderRepository.save(orderMapper.toEntity(dto)));
+		else throw new Exception("No order to update");
 	}
 	
 	public OrderDto getById(UUID uuid) throws Exception {
-		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findAllByOrderId(uuid));
-		OrderDto dto = orderMapper.fromEntity(orderRepository.findById(uuid));
+		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
+		OrderDto dto = orderMapper.fromEntity(orderRepository.findById(uuid).orElseThrow());
 		dto.setProducts(productsDto);
 		return dto;
 	}
@@ -62,7 +62,7 @@ public class OrderService {
 	public List<OrderDto> getAll() throws Exception {
 		List<OrderDto> list = new ArrayList<>();
 		for (OrderEntity it : orderRepository.findAll()) {
-			OrderDto byId = this.getById(it.getUUID());
+			OrderDto byId = this.getById(it.getUuid());
 			list.add(byId);
 		}
 		return list;

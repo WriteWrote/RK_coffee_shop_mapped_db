@@ -23,7 +23,7 @@ public class OrderMapper {
 	
 	public OrderDto fromEntity(OrderEntity entity) {
 		return new OrderDto(
-				entity.getUUID(),
+				entity.getUuid(),
 				entity.getCustomerId(),
 				entity.getCustomerPhone(),
 				entity.getCustomerFIO(),

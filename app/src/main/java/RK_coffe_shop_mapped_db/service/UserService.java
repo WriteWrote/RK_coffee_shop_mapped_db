@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
@@ -27,18 +28,24 @@ public class UserService {
 	}
 	
 	public void delete(UUID uuid) throws Exception {
-		repository.delete(uuid);
+		if (repository.existsById(uuid))
+			repository.deleteById(uuid);
+		else throw new Exception("No user to delete");
 	}
 	
 	public CreateUserDto update(CreateUserDto dto) throws Exception {
-		return mapper.fromEntity(repository.update(mapper.toEntity(dto)));
+		if (repository.existsById(dto.getUuid()))
+			return mapper.fromEntity(repository.save(mapper.toEntity(dto)));
+		else throw new Exception("No user to update");
 	}
 	
-	public UserDto getById(UUID uuid) throws Exception {
-		return mapper.fromEntity(repository.findById(uuid));
+	public UserDto getById(UUID uuid) {
+		return mapper.fromEntity(repository.findById(uuid).orElseThrow());
 	}
 	
 	public List<UserDto> getAll() {
-		return repository.findAll().stream().map(mapper::fromEntity).collect(Collectors.toList());
+		return StreamSupport.stream(repository.findAll().spliterator(), false)
+				.map(mapper::fromEntity)
+				.collect(Collectors.toList());
 	}
 }
