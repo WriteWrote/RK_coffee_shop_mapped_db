@@ -14,14 +14,6 @@ create table rk_coffee_shop.products
     description varchar(100)
 );
 
-create table rk_coffee_shop.orders_lines
-(
-    uuid       uuid primary key,
-    product_id uuid references rk_coffee_shop.products (uuid) not null,
-    order_id   uuid references rk_coffee_shop.order (uuid)    not null,
-    quantity   int                                            not null
-);
-
 create table rk_coffee_shop.order
 (
     uuid         uuid primary key,
@@ -30,4 +22,12 @@ create table rk_coffee_shop.order
     customer_fio varchar(150) not null,
     address      varchar(150) not null,
     status       varchar(25)  not null
+);
+
+create table rk_coffee_shop.orders_lines
+(
+    uuid       uuid primary key,
+    product_id uuid references rk_coffee_shop.products (uuid) not null,
+    order_id   uuid references rk_coffee_shop.order (uuid)    not null,
+    quantity   int                                            not null
 );

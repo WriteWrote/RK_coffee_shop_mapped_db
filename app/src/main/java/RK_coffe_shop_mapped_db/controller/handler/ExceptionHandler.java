@@ -1,7 +1,12 @@
 package RK_coffe_shop_mapped_db.controller.handler;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.concurrent.Callable;
 
+@Component
+@NoArgsConstructor
 public class ExceptionHandler<T> {
 	public Response<?> handle(Callable<T> callable) {
 		try {

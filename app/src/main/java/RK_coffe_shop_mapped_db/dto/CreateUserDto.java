@@ -6,12 +6,12 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
-@AllArgsConstructor
 @Getter
 public class CreateUserDto extends UserDto {
 	private String password;
 	
-	public String getPassword() {
-		return password;
+	public CreateUserDto(UUID uuid, String login, String password) {
+		super(uuid, login);
+		this.password = password;
 	}
 }

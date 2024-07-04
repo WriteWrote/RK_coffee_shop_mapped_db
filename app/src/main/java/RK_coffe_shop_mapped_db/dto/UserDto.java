@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
-@RequiredArgsConstructor
+
+@AllArgsConstructor
 @Getter
 public class UserDto {
 	private UUID uuid;
