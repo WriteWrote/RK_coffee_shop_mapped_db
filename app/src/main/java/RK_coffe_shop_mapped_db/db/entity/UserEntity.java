@@ -1,27 +1,28 @@
 package RK_coffe_shop_mapped_db.db.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.UUID;
 
-public class UserEntity extends Entity {
+@AllArgsConstructor
+@Getter
+@Table(name = "users", schema = "rk_coffee_shop")
+public class UserEntity {
+	@Id
+	@Column("uuid")
+	private final UUID uuid;
+	@Column("login")
 	private final String login;
+	@Column("password")
+	
 	private String password;
 	
-	public UserEntity(UUID uuid, String login, String password) {
-		super(uuid);
-		this.login = login;
-		this.password = password;
-	}
-	
 	public UserEntity(UUID uuid, String login) {
-		super(uuid);
+		this.uuid = uuid;
 		this.login = login;
-	}
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	public String getPassword() {
-		return password;
 	}
 }

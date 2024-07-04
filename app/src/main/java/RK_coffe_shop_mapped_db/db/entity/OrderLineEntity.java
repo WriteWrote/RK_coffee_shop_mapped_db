@@ -1,28 +1,24 @@
 package RK_coffe_shop_mapped_db.db.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.UUID;
 
-public class OrderLineEntity extends Entity {
+@AllArgsConstructor
+@Getter
+@Table(name = "orders_lines")
+public class OrderLineEntity {
+	@Id
+	@Column("uuid")
+	private final UUID uuid;
+	@Column("product_id")
 	private final UUID productId;
+	@Column("order_id")
 	private final UUID orderId;
+	@Column("quantity")
 	private final int quantity;
-	
-	public OrderLineEntity(UUID uuid, UUID orderId, UUID productId, int quantity) {
-		super(uuid);
-		this.productId = productId;
-		this.orderId = orderId;
-		this.quantity = quantity;
-	}
-	
-	public UUID getProductId() {
-		return productId;
-	}
-	
-	public UUID getOrderId() {
-		return orderId;
-	}
-	
-	public int getQuantity() {
-		return quantity;
-	}
 }
