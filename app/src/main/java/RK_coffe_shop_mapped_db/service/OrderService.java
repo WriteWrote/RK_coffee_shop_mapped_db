@@ -33,13 +33,16 @@ public class OrderService {
 	public OrderDto create(OrderDto dto) {
 		OrderDto savedDto = orderMapper.fromEntity(orderRepository.save(orderMapper.toEntity(dto)));
 		List<OrderLineEntity> orderLines = orderLineMapper.toEntities(dto.getProducts(), dto.getUuid());
-		orderLines.forEach(orderLineRepository::save);
-		return dto;
+		orderLineRepository.saveAll(orderLines);
+		return savedDto;
 	}
 	
 	public void delete(UUID uuid) throws Exception {
-		orderLineRepository.deleteAll(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
-		orderRepository.deleteById(uuid);
+		if (orderRepository.existsById(uuid)) {
+			orderLineRepository.deleteAll(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
+			orderRepository.deleteById(uuid);
+		}
+		else throw new Exception("No order to delete");
 	}
 	
 	/**
