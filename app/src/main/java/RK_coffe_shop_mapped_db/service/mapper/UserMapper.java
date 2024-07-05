@@ -20,7 +20,7 @@ public class UserMapper {
 	
 	public CreateUserDto fromEntity(UserEntity entity) {
 		return new CreateUserDto(
-				entity.getUUID(),
+				entity.getUuid(),
 				entity.getLogin(),
 				entity.getPassword()
 		);

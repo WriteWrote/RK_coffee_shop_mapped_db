@@ -20,7 +20,7 @@ public class ProductMapper {
 	
 	public ProductDto fromEntity(ProductEntity entity) {
 		return new ProductDto(
-				entity.getUUID(),
+				entity.getId(),
 				entity.getName(),
 				entity.getDescription()
 		);

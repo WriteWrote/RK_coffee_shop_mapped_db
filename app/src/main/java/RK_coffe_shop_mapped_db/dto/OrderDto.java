@@ -15,7 +15,6 @@ public class OrderDto {
 	private String fio;
 	private String address;
 	private String status;
-	
 	private Map<UUID, Integer> products;
 	
 	public OrderDto(UUID uuid, UUID customerID, String phone, String fio, String address, String status) {

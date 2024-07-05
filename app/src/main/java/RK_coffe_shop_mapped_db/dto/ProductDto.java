@@ -11,4 +11,8 @@ public class ProductDto {
 	private UUID uuid;
 	private String name;
 	private String description;
+	
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
 }
