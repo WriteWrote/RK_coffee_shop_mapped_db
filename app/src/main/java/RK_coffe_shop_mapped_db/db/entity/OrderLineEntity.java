@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
-@Table(name = "orders_lines")
+@Table(name = "orders_lines", schema = "rk_coffee_shop")
 public class OrderLineEntity {
 	@Id
 	@Column("uuid")
