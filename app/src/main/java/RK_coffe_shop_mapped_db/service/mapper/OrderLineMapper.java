@@ -16,7 +16,7 @@ public class OrderLineMapper {
 	
 	public List<OrderLineEntity> toEntities(Map<UUID, Integer> dtos, UUID orderId) {
 		return dtos.entrySet().stream().map(it -> new OrderLineEntity(
-						UUID.randomUUID(),
+						null,
 						orderId,
 						it.getKey(),
 						it.getValue()

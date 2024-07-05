@@ -15,7 +15,7 @@ public class OrderEntity {
 	@Id
 	@Column("uuid")
 	private final UUID uuid;
-	@Column("customerId")
+	@Column("customer_id")
 	private final UUID customerId;
 	@Column("customer_tel")
 	private final String customerPhone;

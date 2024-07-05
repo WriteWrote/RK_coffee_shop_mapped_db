@@ -15,10 +15,10 @@ public class OrderLineEntity {
 	@Id
 	@Column("uuid")
 	private final UUID uuid;
-	@Column("product_id")
-	private final UUID productId;
 	@Column("order_id")
 	private final UUID orderId;
+	@Column("product_id")
+	private final UUID productId;
 	@Column("quantity")
 	private final int quantity;
 }
