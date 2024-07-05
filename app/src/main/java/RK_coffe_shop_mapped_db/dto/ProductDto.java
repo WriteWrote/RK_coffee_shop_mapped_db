@@ -5,8 +5,8 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class ProductDto {
 	private UUID uuid;
 	private String name;

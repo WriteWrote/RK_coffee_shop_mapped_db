@@ -2,27 +2,34 @@ package RK_coffe_shop_mapped_db.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
-@AllArgsConstructor
 @Getter
+@Setter
+@AllArgsConstructor
 @Table(name = "order", schema = "rk_coffee_shop")
 public class OrderEntity {
 	@Id
 	@Column("uuid")
-	private final UUID uuid;
+	private UUID uuid;
+	
 	@Column("customer_id")
-	private final UUID customerId;
+	private UUID customerId;
+	
 	@Column("customer_tel")
-	private final String customerPhone;
+	private String customerPhone;
+	
 	@Column("customer_fio")
-	private final String customerFIO;
+	private String customerFIO;
+	
 	@Column("address")
-	private final String address;
+	private String address;
+	
 	@Column("status")
-	private final String status;
+	private String status;
 }
