@@ -3,32 +3,11 @@ package RK_coffe_shop_mapped_db.service.mapper;
 
 import RK_coffe_shop_mapped_db.db.entity.OrderEntity;
 import RK_coffe_shop_mapped_db.dto.OrderDto;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class OrderMapper {
-	public OrderMapper() {
-	}
+@Mapper(componentModel = "spring")
+public interface OrderMapper {
+	OrderEntity toEntity(OrderDto dto);
 	
-	public OrderEntity toEntity(OrderDto dto) {
-		return new OrderEntity(
-				dto.getUuid(),
-				dto.getCustomerId(),
-				dto.getPhone(),
-				dto.getFio(),
-				dto.getAddress(),
-				dto.getStatus()
-		);
-	}
-	
-	public OrderDto fromEntity(OrderEntity entity) {
-		return new OrderDto(
-				entity.getUuid(),
-				entity.getCustomerId(),
-				entity.getCustomerPhone(),
-				entity.getCustomerFIO(),
-				entity.getAddress(),
-				entity.getStatus()
-		);
-	}
+	OrderDto fromEntity(OrderEntity entity);
 }

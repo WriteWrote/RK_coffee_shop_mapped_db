@@ -3,26 +3,11 @@ package RK_coffe_shop_mapped_db.service.mapper;
 
 import RK_coffe_shop_mapped_db.db.entity.UserEntity;
 import RK_coffe_shop_mapped_db.dto.CreateUserDto;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class CreateUserMapper {
-	public CreateUserMapper() {
-	}
+@Mapper(componentModel = "spring")
+public interface CreateUserMapper {
+	UserEntity toEntity(CreateUserDto dto);
 	
-	public UserEntity toEntity(CreateUserDto dto) {
-		return new UserEntity(
-				dto.getUuid(),
-				dto.getLogin(),
-				dto.getPassword()
-		);
-	}
-	
-	public CreateUserDto fromEntity(UserEntity entity) {
-		return new CreateUserDto(
-				entity.getUuid(),
-				entity.getLogin(),
-				entity.getPassword()
-		);
-	}
+	CreateUserDto fromEntity(UserEntity entity);
 }
