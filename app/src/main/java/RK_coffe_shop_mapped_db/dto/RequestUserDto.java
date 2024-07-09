@@ -7,12 +7,8 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
-public class ProductDto {
+public class RequestUserDto {
 	private UUID id;
-	private String name;
-	private String description;
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
+	private String login;
+	private String password;
 }

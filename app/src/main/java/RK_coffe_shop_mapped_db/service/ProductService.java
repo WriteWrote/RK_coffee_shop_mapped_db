@@ -18,7 +18,7 @@ public class ProductService {
 	private final ProductMapper productMapper;
 	
 	public ProductDto create(ProductDto dto) {
-		return productMapper.fromEntity(productRepository.save(productMapper.toEntity(dto)));
+		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
 	}
 	
 	public void delete(UUID uuid) throws Exception {
@@ -29,19 +29,19 @@ public class ProductService {
 	}
 	
 	public ProductDto update(ProductDto dto) throws Exception {
-		if (!productRepository.existsById(dto.getUuid())) {
+		if (!productRepository.existsById(dto.getId())) {
 			throw new Exception("No product to update");
 		}
-		return productMapper.fromEntity(productRepository.save(productMapper.toEntity(dto)));
+		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
 	}
 	
 	public ProductDto getById(UUID uuid) {
-		return productMapper.fromEntity(productRepository.findById(uuid).orElseThrow());
+		return productMapper.toDto(productRepository.findById(uuid).orElseThrow());
 	}
 	
 	public List<ProductDto> getAll() {
 		return StreamSupport.stream(productRepository.findAll().spliterator(), false)
-			.map(productMapper::fromEntity)
+			.map(productMapper::toDto)
 			.collect(Collectors.toList());
 	}
 }

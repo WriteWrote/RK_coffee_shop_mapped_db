@@ -24,7 +24,7 @@ public class OrderService {
 	private final OrderLineMapper orderLineMapper;
 	
 	public OrderDto create(OrderDto dto) {
-		OrderDto savedDto = orderMapper.fromEntity(orderRepository.save(orderMapper.toEntity(dto)));
+		OrderDto savedDto = orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
 		List<OrderLineEntity> orderLines = orderLineMapper.toEntities(dto.getProducts(), savedDto.getUuid());
 		orderLineRepository.saveAll(orderLines);
 		return savedDto;
@@ -46,12 +46,12 @@ public class OrderService {
 		if (!orderRepository.existsById(dto.getUuid())) {
 			throw new Exception("No order to update");
 		}
-		return orderMapper.fromEntity(orderRepository.save(orderMapper.toEntity(dto)));
+		return orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
 	}
 	
 	public OrderDto getById(UUID uuid) {
 		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
-		OrderDto dto = orderMapper.fromEntity(orderRepository.findById(uuid).orElseThrow());
+		OrderDto dto = orderMapper.toDto(orderRepository.findById(uuid).orElseThrow());
 		dto.setProducts(productsDto);
 		return dto;
 	}

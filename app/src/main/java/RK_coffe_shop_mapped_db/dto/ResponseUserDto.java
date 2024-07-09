@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
-public class UserDto {
-	private UUID uuid;
+public class ResponseUserDto {
+	private UUID id;
 	private String login;
 }

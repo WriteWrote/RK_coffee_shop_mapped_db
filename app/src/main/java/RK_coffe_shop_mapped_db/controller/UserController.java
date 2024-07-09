@@ -3,8 +3,8 @@ package RK_coffe_shop_mapped_db.controller;
 
 import RK_coffe_shop_mapped_db.controller.handler.ExceptionHandler;
 import RK_coffe_shop_mapped_db.controller.handler.Response;
-import RK_coffe_shop_mapped_db.dto.CreateUserDto;
-import RK_coffe_shop_mapped_db.dto.UserDto;
+import RK_coffe_shop_mapped_db.dto.RequestUserDto;
+import RK_coffe_shop_mapped_db.dto.ResponseUserDto;
 import RK_coffe_shop_mapped_db.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,10 +24,10 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
 	private final UserService service;
-	private final ExceptionHandler<UserDto> handler;
+	private final ExceptionHandler<ResponseUserDto> handler;
 	
 	@PostMapping
-	public Response<?> create(@RequestBody CreateUserDto dto) {
+	public Response<?> create(@RequestBody RequestUserDto dto) {
 		return handler.handle(() -> service.create(dto));
 	}
 	
@@ -41,7 +41,7 @@ public class UserController {
 	
 	//fixme Create != Update dto
 	@PutMapping
-	public Response<?> update(@RequestBody CreateUserDto dto) {
+	public Response<?> update(@RequestBody RequestUserDto dto) {
 		return handler.handle(() -> service.update(dto));
 	}
 	
@@ -52,6 +52,6 @@ public class UserController {
 	
 	@GetMapping("/all")
 	public Response<?> getAll() {
-		return new ExceptionHandler<List<UserDto>>().handle(service::getAll);
+		return new ExceptionHandler<List<ResponseUserDto>>().handle(service::getAll);
 	}
 }

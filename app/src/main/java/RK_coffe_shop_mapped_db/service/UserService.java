@@ -1,9 +1,10 @@
 package RK_coffe_shop_mapped_db.service;
 
 import RK_coffe_shop_mapped_db.db.repository.UserRepository;
-import RK_coffe_shop_mapped_db.dto.CreateUserDto;
-import RK_coffe_shop_mapped_db.dto.UserDto;
-import RK_coffe_shop_mapped_db.service.mapper.CreateUserMapper;
+import RK_coffe_shop_mapped_db.dto.RequestUserDto;
+import RK_coffe_shop_mapped_db.dto.ResponseUserDto;
+import RK_coffe_shop_mapped_db.service.mapper.RequestUserMapper;
+import RK_coffe_shop_mapped_db.service.mapper.ResponseUserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,11 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class UserService {
 	private final UserRepository userRepository;
-	private final CreateUserMapper userMapper;
+	private final RequestUserMapper requestUserMapper;
+	private final ResponseUserMapper responseUserMapper;
 	
-	public CreateUserDto create(CreateUserDto dto) {
-		return userMapper.fromEntity(userRepository.save(userMapper.toEntity(dto)));
+	public RequestUserDto create(RequestUserDto dto) {
+		return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
 	}
 	
 	public void delete(UUID uuid) throws Exception {
@@ -28,19 +30,19 @@ public class UserService {
 		else throw new Exception("No user to delete");
 	}
 	
-	public CreateUserDto update(CreateUserDto dto) throws Exception {
-		if (userRepository.existsById(dto.getUuid()))
-			return userMapper.fromEntity(userRepository.save(userMapper.toEntity(dto)));
+	public RequestUserDto update(RequestUserDto dto) throws Exception {
+		if (userRepository.existsById(dto.getId()))
+			return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
 		else throw new Exception("No user to update");
 	}
 	
-	public UserDto getById(UUID uuid) {
-		return userMapper.fromEntity(userRepository.findById(uuid).orElseThrow());
+	public ResponseUserDto getById(UUID uuid) {
+		return responseUserMapper.toDto(userRepository.findById(uuid).orElseThrow());	//todo create proper mapper
 	}
 	
-	public List<UserDto> getAll() {
+	public List<ResponseUserDto> getAll() {
 		return StreamSupport.stream(userRepository.findAll().spliterator(), false)
-			.map(userMapper::fromEntity)
+			.map(responseUserMapper::toDto)
 			.collect(Collectors.toList());
 	}
 }
