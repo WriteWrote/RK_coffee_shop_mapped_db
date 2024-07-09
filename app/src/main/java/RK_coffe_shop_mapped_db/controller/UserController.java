@@ -23,35 +23,35 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-	private final UserService service;
-	private final ExceptionHandler<ResponseUserDto> handler;
+	private final UserService userService;
+	private final ExceptionHandler<ResponseUserDto> responseExceptionHandler;
+	private final ExceptionHandler<RequestUserDto> requestExceptionHandler;
 	
 	@PostMapping
 	public Response<?> create(@RequestBody RequestUserDto dto) {
-		return handler.handle(() -> service.create(dto));
+		return requestExceptionHandler.handle(() -> userService.create(dto));
 	}
 	
 	@DeleteMapping("/{uuid}")
 	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
-		return handler.handle(() -> {
-			service.delete(uuid);
+		return responseExceptionHandler.handle(() -> {
+			userService.delete(uuid);
 			return null;
 		});
 	}
 	
-	//fixme Create != Update dto
 	@PutMapping
 	public Response<?> update(@RequestBody RequestUserDto dto) {
-		return handler.handle(() -> service.update(dto));
+		return requestExceptionHandler.handle(() -> userService.update(dto));
 	}
 	
 	@GetMapping("/{uuid}")
 	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-		return handler.handle(() -> service.getById(uuid));
+		return responseExceptionHandler.handle(() -> userService.getById(uuid));
 	}
 	
 	@GetMapping("/all")
 	public Response<?> getAll() {
-		return new ExceptionHandler<List<ResponseUserDto>>().handle(service::getAll);
+		return new ExceptionHandler<List<ResponseUserDto>>().handle(userService::getAll);
 	}
 }
