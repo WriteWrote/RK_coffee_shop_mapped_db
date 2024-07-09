@@ -9,16 +9,15 @@ import java.util.Map;
 import java.util.UUID;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDto {
-	private UUID uuid;
+	private UUID id;
 	private UUID customerId;
 	private String phone;
 	private String fio;
 	private String address;
 	private String status;
-	
-	@Setter
 	private Map<UUID, Integer> products;
 }

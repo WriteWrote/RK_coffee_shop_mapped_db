@@ -2,6 +2,7 @@ package RK_coffe_shop_mapped_db.db.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -12,11 +13,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "order", schema = "rk_coffee_shop")
 public class OrderEntity {
 	@Id
 	@Column("uuid")
-	private UUID uuid;
+	private UUID id;
 	
 	@Column("customer_id")
 	private UUID customerId;

@@ -20,12 +20,12 @@ import java.util.UUID;
 public class OrderService {
 	private final OrderRepository orderRepository;
 	private final OrderLineRepository orderLineRepository;
-	private final OrderMapper orderMapper;
 	private final OrderLineMapper orderLineMapper;
+	private final OrderMapper orderMapper;
 	
 	public OrderDto create(OrderDto dto) {
 		OrderDto savedDto = orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
-		List<OrderLineEntity> orderLines = orderLineMapper.toEntities(dto.getProducts(), savedDto.getUuid());
+		List<OrderLineEntity> orderLines = orderLineMapper.toEntities(dto.getProducts(), savedDto.getId());
 		orderLineRepository.saveAll(orderLines);
 		return savedDto;
 	}
@@ -43,7 +43,7 @@ public class OrderService {
 	 * только поля получателя: Фио, адрес, статус заказа и т.д.
 	 */
 	public OrderDto update(OrderDto dto) throws Exception {
-		if (!orderRepository.existsById(dto.getUuid())) {
+		if (!orderRepository.existsById(dto.getId())) {
 			throw new Exception("No order to update");
 		}
 		return orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
@@ -59,7 +59,7 @@ public class OrderService {
 	public List<OrderDto> getAll() {
 		List<OrderDto> list = new ArrayList<>();
 		for (OrderEntity it : orderRepository.findAll()) {
-			OrderDto byId = this.getById(it.getUuid());
+			OrderDto byId = this.getById(it.getId());
 			list.add(byId);
 		}
 		return list;
