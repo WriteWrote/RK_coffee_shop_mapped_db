@@ -5,3 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/CoffeeShopDB
     username: postgres
     password: postgres
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+    baseline-on-migrate: true
