@@ -5,5 +5,3 @@ spring:
     url: jdbc:postgresql://localhost:5432/CoffeeShopDB
     username: postgres
     password: postgres
-  liquibase:
-    change-log: classpath:db/changelog/master-changelog.yaml
