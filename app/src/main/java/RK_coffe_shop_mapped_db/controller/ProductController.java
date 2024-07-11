@@ -21,34 +21,34 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/products")
 public class ProductController {
-	private final ProductService service;
+	private final ProductService productService;
 	private final ExceptionHandler<ProductDto> handler;
 	
 	@PostMapping
 	public Response<?> create(@RequestBody ProductDto dto) {
-		return handler.handle(() -> service.create(dto));
+		return handler.handle(() -> productService.create(dto));
 	}
 	
 	@DeleteMapping("/{uuid}")
 	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
 		return handler.handle(() -> {
-			service.delete(uuid);
+			productService.delete(uuid);
 			return null;
 		});
 	}
 	
 	@PutMapping
 	public Response<?> update(@RequestBody ProductDto dto) {
-		return handler.handle(() -> service.update(dto));
+		return handler.handle(() -> productService.update(dto));
 	}
 	
 	@GetMapping("/{uuid}")
 	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-		return handler.handle(() -> service.getById(uuid));
+		return handler.handle(() -> productService.getById(uuid));
 	}
 	
 	@GetMapping("/all")
 	public Response<?> getAll() {
-		return new ExceptionHandler<List<ProductDto>>().handle(service::getAll);
+		return new ExceptionHandler<List<ProductDto>>().handle(productService::getAll);
 	}
 }

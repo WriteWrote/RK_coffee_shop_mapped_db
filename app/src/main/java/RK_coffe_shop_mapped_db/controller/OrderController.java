@@ -21,34 +21,34 @@ import java.util.UUID;
 @RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
-	private final OrderService service;
+	private final OrderService orderService;
 	private final ExceptionHandler<OrderDto> handler;
 	
 	@PostMapping
 	public Response<?> create(@RequestBody OrderDto dto) {
-		return handler.handle(() -> service.create(dto));
+		return handler.handle(() -> orderService.create(dto));
 	}
 	
 	@DeleteMapping("/{uuid}")
 	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
 		return handler.handle(() -> {
-			service.delete(uuid);
+			orderService.delete(uuid);
 			return null;
 		});
 	}
 	
 	@PutMapping
 	public Response<?> update(@RequestBody OrderDto dto) {
-		return handler.handle(() -> service.update(dto));
+		return handler.handle(() -> orderService.update(dto));
 	}
 	
 	@GetMapping("/{uuid}")
 	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-		return handler.handle(() -> service.getById(uuid));
+		return handler.handle(() -> orderService.getById(uuid));
 	}
 	
 	@GetMapping("/all")
 	public Response<?> getAll() {
-		return new ExceptionHandler<List<OrderDto>>().handle(service::getAll);
+		return new ExceptionHandler<List<OrderDto>>().handle(orderService::getAll);
 	}
 }
