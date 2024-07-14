@@ -3,8 +3,8 @@ package RK_coffe_shop_mapped_db.db.repository;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class CRUDRepository<T> {    //todo think about functional interface Entity maybe
-	public T save(T object) {
+public abstract class CRUDRepository<T, ID> {    //todo think about functional interface Entity maybe
+	public <E extends T> E save(E object) {
 		//todo not yet implemented
 		return null;
 	}
@@ -15,7 +15,8 @@ public abstract class CRUDRepository<T> {    //todo think about functional inter
 //		}
 //		else throw new Exception("No element with this UUID in table");
 	}
-	public T update(T object) throws Exception {
+	
+	public <E extends T> E update(E object) throws Exception {
 //		if (table.containsKey(object.getId()))
 //			return table.put(object.getId(), object);
 //		else throw new Exception("No element with this UUID in table");
@@ -23,7 +24,7 @@ public abstract class CRUDRepository<T> {    //todo think about functional inter
 		//todo not yet implemented
 	}
 	
-	public T findById(UUID uuid) throws Exception {
+	public <E extends T> E findById(UUID id) throws Exception {
 //		if (table.containsKey(uuid))
 //			return table.get(uuid);
 //		else throw new Exception("No element with this UUID in table");
@@ -31,7 +32,7 @@ public abstract class CRUDRepository<T> {    //todo think about functional inter
 		//todo not yet implemented
 	}
 	
-	public Collection<T> findAll() {
+	public <E extends T> Collection<E> findAll() {
 //		return table.values();
 		return null;
 		//todo not yet implemented

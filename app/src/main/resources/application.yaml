@@ -2,7 +2,8 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/CoffeeShopDB
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://localhost:5432/CoffeeShopDB
     username: postgres
     password: postgres
   flyway:
