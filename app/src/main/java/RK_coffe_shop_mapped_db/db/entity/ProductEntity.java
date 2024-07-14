@@ -22,7 +22,7 @@ public class ProductEntity implements Persistable<UUID> {
 	private UUID id;
 	
 	@Column("title")
-	private String name;
+	private String title;
 	
 	@Column
 	private String description;

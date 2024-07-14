@@ -32,26 +32,31 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append("(");
 		
 		fields.forEach(it -> {
-			sqlBuilder.append(it);
+			sqlBuilder.append(it.getName());	//todo format name to camelcase
 			sqlBuilder.append(", ");
 		});
+		
+		sqlBuilder.delete(sqlBuilder.lastIndexOf(","), sqlBuilder.lastIndexOf(" "));    //todo think about it
 		
 		sqlBuilder.append(") ");
 		sqlBuilder.append("values");
 		sqlBuilder.append("(");
-		sqlBuilder.append("gen_random_uuid(), ");
+//		sqlBuilder.append("gen_random_uuid(), "); todo return gen_random_id
 		
 		fields.forEach(it -> {
 			try {
 				it.setAccessible(true);
 				sqlBuilder.append(it.get(object));
 				sqlBuilder.append(", ");
+				//todo if type string use \'\'
 			} catch (IllegalAccessException e) {
 				throw new RuntimeException(e);
 			} finally {
 				it.setAccessible(false);
 			}
 		});
+		
+		sqlBuilder.delete(sqlBuilder.lastIndexOf(","), sqlBuilder.lastIndexOf(" "));    //todo think about it
 		
 		sqlBuilder.append(");");
 		
