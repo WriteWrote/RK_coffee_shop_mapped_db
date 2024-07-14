@@ -21,27 +21,27 @@ public class ProductService {
 		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
 	}
 	
-	public void delete(UUID uuid) throws Exception {
-		if (!productRepository.existsById(uuid)) {
-			throw new Exception("No product to delete");
-		}
-		productRepository.deleteById(uuid);
-	}
-	
-	public ProductDto update(ProductDto dto) throws Exception {
-		if (!productRepository.existsById(dto.getId())) {
-			throw new Exception("No product to update");
-		}
-		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
-	}
-	
-	public ProductDto getById(UUID uuid) {
-		return productMapper.toDto(productRepository.findById(uuid).orElseThrow());
-	}
-	
-	public List<ProductDto> getAll() {
-		return StreamSupport.stream(productRepository.findAll().spliterator(), false)
-			.map(productMapper::toDto)
-			.collect(Collectors.toList());
-	}
+//	public void delete(UUID uuid) throws Exception {
+//		if (!productRepository.existsById(uuid)) {
+//			throw new Exception("No product to delete");
+//		}
+//		productRepository.deleteById(uuid);
+//	}
+//
+//	public ProductDto update(ProductDto dto) throws Exception {
+//		if (!productRepository.existsById(dto.getId())) {
+//			throw new Exception("No product to update");
+//		}
+//		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
+//	}
+//
+//	public ProductDto getById(UUID uuid) {
+//		return productMapper.toDto(productRepository.findById(uuid).orElseThrow());
+//	}
+//
+//	public List<ProductDto> getAll() {
+//		return StreamSupport.stream(productRepository.findAll().spliterator(), false)
+//			.map(productMapper::toDto)
+//			.collect(Collectors.toList());
+//	}
 }

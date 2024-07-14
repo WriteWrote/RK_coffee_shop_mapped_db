@@ -1,6 +1,8 @@
 package RK_coffe_shop_mapped_db.db.repository;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.lang.reflect.Field;
@@ -8,21 +10,25 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+@Getter
 @RequiredArgsConstructor
-public abstract class CRUDRepository<T, ID> {    //todo think about functional interface Entity maybe
-	private JdbcTemplate jdbcTemplate;
+public abstract class CommonCrudRepository<T, ID> {    //todo think about marker interface Entity maybe
+	@Value("${db.schema}")
+	private String schemaName;
 	
-	public <E extends T> E save(E object, String schema, String name) {
+	private final String tableName;
+	private final JdbcTemplate jdbcTemplate;
+	
+	public <E extends T> E save(E object) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		List<Field> fields = Arrays.stream(object.getClass().getDeclaredFields()).toList();
 		
 		sqlBuilder
 			.append("INSERT INTO ")
-			.append(schema)
+			.append(schemaName)
 			.append(".")
-			.append(name)
+			.append(tableName)
 			.append("(");
 		
 		fields.forEach(it -> {
@@ -54,7 +60,7 @@ public abstract class CRUDRepository<T, ID> {    //todo think about functional i
 		 */
 		
 		jdbcTemplate.update(sqlBuilder.toString());
-		return null;
+		return object;    //todo think about it
 	}
 	
 	public void delete(UUID id) throws Exception {
