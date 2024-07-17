@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Getter
@@ -22,7 +24,9 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 	private final String tableName;
 	private final JdbcTemplate jdbcTemplate;
 	
-	public <E extends T> E save(E object) {
+	private final RowMapper<T> localRawMapper;
+	
+	public T save(T object) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		List<Field> fields = Arrays.stream(object.getClass().getDeclaredFields()).toList();
 		Object[] values = fields.stream().map(it -> {
@@ -62,7 +66,7 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 		return object;    //todo think about it
 	}
 	
-	public void delete(UUID id) throws Exception {
+	public void delete(UUID id) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		
 		sqlBuilder
@@ -70,21 +74,12 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append(schemaName)
 			.append(".")
 			.append(tableName)
-			.append(" WHERE id = ?;")
-		;
+			.append(" WHERE id = ?;");
 		
 		jdbcTemplate.update(sqlBuilder.toString(), id);
 	}
-
-//	public <E extends T> E update(E object) throws Exception {
-//		if (table.containsKey(object.getId()))
-//			return table.put(object.getId(), object);
-//		else throw new Exception("No element with this UUID in table");
-//		return null;
-	//todo not yet implemented
-//	}
 	
-	public <E extends T> E findById(UUID id) throws Exception {
+	public Optional<T> findById(UUID id) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		
 		sqlBuilder
@@ -92,18 +87,14 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append(schemaName)
 			.append(".")
 			.append(tableName)
-			.append(" WHERE id = ?;")
-		;
-
-//		if (table.containsKey(uuid))
-//			return table.get(uuid);
-//		else throw new Exception("No element with this UUID in table");
-		jdbcTemplate.query(sqlBuilder .toString(), (resultSet, i) -> {
-		});
-		//todo not yet implemented
+			.append(" WHERE id = ?");
+		
+		return jdbcTemplate.query(sqlBuilder.toString(), localRawMapper, id)
+			.stream()
+			.findFirst();
 	}
 	
-	public <E extends T> Collection<E> findAll() {
+	public Collection<T> findAll() {
 		StringBuilder sqlBuilder = new StringBuilder();
 		
 		sqlBuilder
@@ -112,11 +103,7 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append(".")
 			.append(tableName)
 			.append(";");    //todo should i use LIMIT?
-
-//		return jdbcTemplate.query(sqlBuilder.toString(), (resultSet, i) -> {
-//			return new Object();
-//			resultSet.getString("");
-//		});//todo not yet implemented
-		return null;
+		
+		return jdbcTemplate.query(sqlBuilder.toString(), localRawMapper);
 	}
 }
