@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-//public interface ProductRepository extends CrudRepository<ProductEntity, UUID> {
-//}
 @Repository
 public class ProductRepository extends CommonCrudRepository<ProductEntity, UUID> {
 	@Autowired

@@ -9,7 +9,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProductDto {
 	private UUID id;
-	private String name;
+	private String title;
 	private String description;
 	
 	public void setId(UUID id) {

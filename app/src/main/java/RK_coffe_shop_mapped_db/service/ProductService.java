@@ -18,9 +18,11 @@ public class ProductService {
 	private final ProductMapper productMapper;
 	
 	public ProductDto create(ProductDto dto) {
+		if (dto.getId() == null)
+			dto.setId(UUID.randomUUID());
 		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
 	}
-	
+
 //	public void delete(UUID uuid) throws Exception {
 //		if (!productRepository.existsById(uuid)) {
 //			throw new Exception("No product to delete");
