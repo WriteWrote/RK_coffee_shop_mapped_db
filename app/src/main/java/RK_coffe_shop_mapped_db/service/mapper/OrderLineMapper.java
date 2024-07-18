@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 public interface OrderLineMapper {
 	default List<OrderLineEntity> toEntities(Map<UUID, Integer> dtos, UUID orderId) {
 		return dtos.entrySet().stream().map(it -> new OrderLineEntity(
-						null,
-						orderId,
-						it.getKey(),
-						it.getValue()
-				)
+				null,
+				orderId,
+				it.getKey(),
+				it.getValue()
+			)
 		).collect(Collectors.toList());
 	}
 	

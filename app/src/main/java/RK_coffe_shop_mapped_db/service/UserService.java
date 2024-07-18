@@ -27,19 +27,22 @@ public class UserService {
 	}
 	
 	public void delete(UUID uuid) throws Exception {
-		if (userRepository.existsById(uuid))
-			userRepository.delete(uuid);
-		else throw new Exception("No user to delete");
+		if (!userRepository.existsById(uuid)) {
+			throw new Exception("No user to delete");
+		}
+		userRepository.delete(uuid);
 	}
 	
 	public RequestUserDto update(RequestUserDto dto) throws Exception {
-		if (userRepository.existsById(dto.getId()))
-			return requestUserMapper.toDto(userRepository.update(requestUserMapper.toEntity(dto)));
-		else throw new Exception("No user to update");
+		if (!userRepository.existsById(dto.getId())) {
+			throw new Exception("No user to update");
+		}
+		var dbEntity = userRepository.findById(dto.getId()).orElseThrow();
+		return requestUserMapper.toDto(userRepository.update(requestUserMapper.merge(dbEntity, dto)));
 	}
 	
 	public ResponseUserDto getById(UUID uuid) {
-		return responseUserMapper.toDto(userRepository.findById(uuid).orElseThrow());	//todo create proper mapper
+		return responseUserMapper.toDto(userRepository.findById(uuid).orElseThrow());
 	}
 	
 	public List<ResponseUserDto> getAll() {

@@ -51,7 +51,8 @@ public class OrderService {
 		if (!orderRepository.existsById(dto.getId())) {
 			throw new Exception("No order to update");
 		}
-		return orderMapper.toDto(orderRepository.update(orderMapper.toEntity(dto)));
+		var dbEntity = orderRepository.findById(dto.getId()).orElseThrow();
+		return orderMapper.toDto(orderRepository.update(orderMapper.merge(dbEntity, dto)));
 	}
 	
 	public OrderDto getById(UUID id) {

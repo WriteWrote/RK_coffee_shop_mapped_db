@@ -22,25 +22,26 @@ public class ProductService {
 			dto.setId(UUID.randomUUID());
 		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
 	}
-
+	
 	public void delete(UUID id) throws Exception {
 		if (!productRepository.existsById(id)) {
 			throw new Exception("No product to delete");
 		}
 		productRepository.delete(id);
 	}
-
+	
 	public ProductDto update(ProductDto dto) throws Exception {
 		if (!productRepository.existsById(dto.getId())) {
 			throw new Exception("No product to update");
 		}
-		return productMapper.toDto(productRepository.update(productMapper.toEntity(dto)));
+		var dbEntity = productRepository.findById(dto.getId()).orElseThrow();
+		return productMapper.toDto(productRepository.update(productMapper.merge(dbEntity, dto)));
 	}
-
+	
 	public ProductDto getById(UUID id) {
 		return productMapper.toDto(productRepository.findById(id).orElseThrow());
 	}
-
+	
 	public List<ProductDto> getAll() {
 		return productRepository.findAll().stream()
 			.map(productMapper::toDto)
