@@ -19,6 +19,7 @@ public interface OrderMapper {
 	@Mapping(target = "fio", source = "customerFio")
 	OrderDto toDto(OrderEntity entity);
 	
-	@Mapping(target = "products", ignore = true)
+	@Mapping(target = "customerPhone", source = "phone")
+	@Mapping(target = "customerFio", source = "fio")
 	OrderEntity merge(@MappingTarget OrderEntity target, OrderDto source);
 }
