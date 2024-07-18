@@ -66,7 +66,7 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 		return object;    //todo think about it
 	}
 	
-	public void delete(UUID id) {
+	public void delete(ID id) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		
 		sqlBuilder
@@ -79,7 +79,7 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 		jdbcTemplate.update(sqlBuilder.toString(), id);
 	}
 	
-	public Optional<T> findById(UUID id) {
+	public Optional<T> findById(ID id) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		
 		sqlBuilder
@@ -105,5 +105,9 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append(";");    //todo should i use LIMIT?
 		
 		return jdbcTemplate.query(sqlBuilder.toString(), localRawMapper);
+	}
+	
+	public Boolean existsById(ID id) {
+		return findById(id).isPresent();
 	}
 }
