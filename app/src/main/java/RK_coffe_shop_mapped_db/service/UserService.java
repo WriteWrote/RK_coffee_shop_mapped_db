@@ -26,7 +26,7 @@ public class UserService {
 	
 	public void delete(UUID uuid) throws Exception {
 		if (userRepository.existsById(uuid))
-			userRepository.deleteById(uuid);
+			userRepository.delete(uuid);
 		else throw new Exception("No user to delete");
 	}
 	
@@ -41,7 +41,7 @@ public class UserService {
 	}
 	
 	public List<ResponseUserDto> getAll() {
-		return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+		return userRepository.findAll().stream()
 			.map(responseUserMapper::toDto)
 			.collect(Collectors.toList());
 	}
