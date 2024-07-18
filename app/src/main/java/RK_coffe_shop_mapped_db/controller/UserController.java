@@ -32,10 +32,10 @@ public class UserController {
 		return requestExceptionHandler.handle(() -> userService.create(dto));
 	}
 	
-	@DeleteMapping("/{uuid}")
-	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
+	@DeleteMapping("/{id}")
+	public Response<?> delete(@PathVariable("id") UUID id) {
 		return responseExceptionHandler.handle(() -> {
-			userService.delete(uuid);
+			userService.delete(id);
 			return null;
 		});
 	}
@@ -45,9 +45,9 @@ public class UserController {
 		return requestExceptionHandler.handle(() -> userService.update(dto));
 	}
 	
-	@GetMapping("/{uuid}")
-	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-		return responseExceptionHandler.handle(() -> userService.getById(uuid));
+	@GetMapping("/{id}")
+	public Response<?> getById(@PathVariable("id") UUID id) {
+		return responseExceptionHandler.handle(() -> userService.getById(id));
 	}
 	
 	@GetMapping("/all")

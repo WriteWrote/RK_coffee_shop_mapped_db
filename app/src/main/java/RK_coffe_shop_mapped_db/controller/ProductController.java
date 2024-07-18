@@ -29,26 +29,26 @@ public class ProductController {
 		return handler.handle(() -> productService.create(dto));
 	}
 	
-//	@DeleteMapping("/{uuid}")
-//	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
-//		return handler.handle(() -> {
-//			productService.delete(uuid);
-//			return null;
-//		});
-//	}
-//
-//	@PutMapping
-//	public Response<?> update(@RequestBody ProductDto dto) {
-//		return handler.handle(() -> productService.update(dto));
-//	}
-//
-//	@GetMapping("/{uuid}")
-//	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-//		return handler.handle(() -> productService.getById(uuid));
-//	}
-//
-//	@GetMapping("/all")
-//	public Response<?> getAll() {
-//		return new ExceptionHandler<List<ProductDto>>().handle(productService::getAll);
-//	}
+	@DeleteMapping("/{id}")
+	public Response<?> delete(@PathVariable("id") UUID id) {
+		return handler.handle(() -> {
+			productService.delete(id);
+			return null;
+		});
+	}
+
+	@PutMapping
+	public Response<?> update(@RequestBody ProductDto dto) {
+		return handler.handle(() -> productService.update(dto));
+	}
+
+	@GetMapping("/{id}")
+	public Response<?> getById(@PathVariable("id") UUID id) {
+		return handler.handle(() -> productService.getById(id));
+	}
+
+	@GetMapping("/all")
+	public Response<?> getAll() {
+		return new ExceptionHandler<List<ProductDto>>().handle(productService::getAll);
+	}
 }

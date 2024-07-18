@@ -29,10 +29,10 @@ public class OrderController {
 		return handler.handle(() -> orderService.create(dto));
 	}
 	
-	@DeleteMapping("/{uuid}")
-	public Response<?> delete(@PathVariable("uuid") UUID uuid) {
+	@DeleteMapping("/{id}")
+	public Response<?> delete(@PathVariable("id") UUID id) {
 		return handler.handle(() -> {
-			orderService.delete(uuid);
+			orderService.delete(id);
 			return null;
 		});
 	}
@@ -42,9 +42,9 @@ public class OrderController {
 		return handler.handle(() -> orderService.update(dto));
 	}
 	
-	@GetMapping("/{uuid}")
-	public Response<?> getById(@PathVariable("uuid") UUID uuid) {
-		return handler.handle(() -> orderService.getById(uuid));
+	@GetMapping("/{id}")
+	public Response<?> getById(@PathVariable("id") UUID id) {
+		return handler.handle(() -> orderService.getById(id));
 	}
 	
 	@GetMapping("/all")
