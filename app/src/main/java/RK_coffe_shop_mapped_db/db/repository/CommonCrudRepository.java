@@ -138,7 +138,7 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 			.append(schemaName)
 			.append(".")
 			.append(tableName)
-			.append(";");    //todo should i use LIMIT?
+			.append(";");
 		
 		return jdbcTemplate.query(sqlBuilder.toString(), localRawMapper);
 	}
