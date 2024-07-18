@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
 	@Mapping(target = "customerPhone", source = "phone")
-	@Mapping(target = "customerFIO", source = "fio")
+	@Mapping(target = "customerFio", source = "fio")
 	OrderEntity toEntity(OrderDto dto);
 	
 	@Mapping(target = "products", ignore = true)
 	@Mapping(target = "phone", source = "customerPhone")
-	@Mapping(target = "fio", source = "customerFIO")
+	@Mapping(target = "fio", source = "customerFio")
 	OrderDto toDto(OrderEntity entity);
 }

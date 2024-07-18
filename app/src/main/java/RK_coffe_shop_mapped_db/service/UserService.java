@@ -21,6 +21,8 @@ public class UserService {
 	private final ResponseUserMapper responseUserMapper;
 	
 	public RequestUserDto create(RequestUserDto dto) {
+		if (dto.getId() == null)
+			dto.setId(UUID.randomUUID());
 		return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
 	}
 	

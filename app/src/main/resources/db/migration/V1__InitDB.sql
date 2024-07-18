@@ -18,7 +18,7 @@ create table rk_coffee_shop.order
 (
     id         uuid primary key default gen_random_uuid(),
     customer_id  uuid references rk_coffee_shop.users (id),
-    customer_tel varchar(12)   not null,
+    customer_phone varchar(12)   not null,
     customer_fio varchar(150) not null,
     address      varchar(150) not null,
     status       varchar(25)  not null

@@ -23,12 +23,12 @@ import java.util.UUID;
 public class OrderController {
 	private final OrderService orderService;
 	private final ExceptionHandler<OrderDto> handler;
-//
-//	@PostMapping
-//	public Response<?> create(@RequestBody OrderDto dto) {
-//		return handler.handle(() -> orderService.create(dto));
-//	}
-//
+
+	@PostMapping
+	public Response<?> create(@RequestBody OrderDto dto) {
+		return handler.handle(() -> orderService.create(dto));
+	}
+
 //	@DeleteMapping("/{id}")
 //	public Response<?> delete(@PathVariable("id") UUID id) {
 //		return handler.handle(() -> {
@@ -36,17 +36,17 @@ public class OrderController {
 //			return null;
 //		});
 //	}
-//
-//	@PutMapping
-//	public Response<?> update(@RequestBody OrderDto dto) {
-//		return handler.handle(() -> orderService.update(dto));
-//	}
-//
-//	@GetMapping("/{id}")
-//	public Response<?> getById(@PathVariable("id") UUID id) {
-//		return handler.handle(() -> orderService.getById(id));
-//	}
-//
+
+	@PutMapping
+	public Response<?> update(@RequestBody OrderDto dto) {
+		return handler.handle(() -> orderService.update(dto));
+	}
+
+	@GetMapping("/{id}")
+	public Response<?> getById(@PathVariable("id") UUID id) {
+		return handler.handle(() -> orderService.getById(id));
+	}
+
 //	@GetMapping("/all")
 //	public Response<?> getAll() {
 //		return new ExceptionHandler<List<OrderDto>>().handle(orderService::getAll);

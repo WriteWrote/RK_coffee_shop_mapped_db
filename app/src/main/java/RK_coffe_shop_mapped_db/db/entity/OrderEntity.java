@@ -23,11 +23,11 @@ public class OrderEntity {
 	@Column("customer_id")
 	private UUID customerId;
 	
-	@Column("customer_tel")
+	@Column("customer_phone")
 	private String customerPhone;
 	
 	@Column("customer_fio")
-	private String customerFIO;
+	private String customerFio;
 	
 	@Column("address")
 	private String address;
