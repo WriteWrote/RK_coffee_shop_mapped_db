@@ -34,7 +34,7 @@ public class UserService {
 	
 	public RequestUserDto update(RequestUserDto dto) throws Exception {
 		if (userRepository.existsById(dto.getId()))
-			return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
+			return requestUserMapper.toDto(userRepository.update(requestUserMapper.toEntity(dto)));
 		else throw new Exception("No user to update");
 	}
 	

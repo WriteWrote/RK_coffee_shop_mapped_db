@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
@@ -61,6 +62,41 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 		sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
 		
 		sqlBuilder.append(");");
+		
+		jdbcTemplate.update(sqlBuilder.toString(), values);
+		return object;    //todo think about it
+	}
+	
+	public T update(T object) throws NoSuchFieldException {
+		StringBuilder sqlBuilder = new StringBuilder();
+		List<Field> fields = Arrays.stream(object.getClass().getDeclaredFields()).collect(Collectors.toList());
+		fields.remove(0);
+		fields.add(object.getClass().getDeclaredField("id"));
+		Object[] values = fields.stream().map(it -> {
+			try {
+				var getterName = "get" + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, it.getName());
+				return object.getClass().getMethod(getterName).invoke(object);
+			} catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+				throw new RuntimeException(e);
+			}
+		}).toArray(Object[]::new);
+		
+		sqlBuilder
+			.append("UPDATE ")
+			.append(schemaName)
+			.append(".")
+			.append(tableName)
+			.append(" SET ");
+		
+		fields.remove(fields.size() - 1);
+		fields.forEach(it -> {
+			sqlBuilder.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, it.getName()));
+			sqlBuilder.append("=?,");
+		});
+		
+		sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
+		
+		sqlBuilder.append(" WHERE id=?;");
 		
 		jdbcTemplate.update(sqlBuilder.toString(), values);
 		return object;    //todo think about it

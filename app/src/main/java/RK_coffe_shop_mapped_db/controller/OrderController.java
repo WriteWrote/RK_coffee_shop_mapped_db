@@ -29,13 +29,13 @@ public class OrderController {
 		return handler.handle(() -> orderService.create(dto));
 	}
 
-//	@DeleteMapping("/{id}")
-//	public Response<?> delete(@PathVariable("id") UUID id) {
-//		return handler.handle(() -> {
-//			orderService.delete(id);
-//			return null;
-//		});
-//	}
+	@DeleteMapping("/{id}")
+	public Response<?> delete(@PathVariable("id") UUID id) {
+		return handler.handle(() -> {
+			orderService.delete(id);
+			return null;
+		});
+	}
 
 	@PutMapping
 	public Response<?> update(@RequestBody OrderDto dto) {

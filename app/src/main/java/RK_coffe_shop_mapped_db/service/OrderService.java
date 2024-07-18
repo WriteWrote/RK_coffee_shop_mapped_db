@@ -34,14 +34,14 @@ public class OrderService {
 		});
 		return savedDto;
 	}
-
-//	public void delete(UUID uuid) throws Exception {
-//		if (!orderRepository.existsById(uuid)) {
-//			throw new Exception("No order to delete");
-//		}
-//		orderLineRepository.deleteAll(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
-//		orderRepository.deleteById(uuid);
-//	}
+	
+	public void delete(UUID id) throws Exception {
+		if (!orderRepository.existsById(id)) {
+			throw new Exception("No order to delete");
+		}
+		orderLineRepository.findOrderLineEntitiesByOrderId(id).forEach(it -> orderLineRepository.delete(it.getId()));
+		orderRepository.delete(id);
+	}
 	
 	/**
 	 * Предполагается, что после создания содержимое заказа уже не может быть изменено,
@@ -51,16 +51,16 @@ public class OrderService {
 		if (!orderRepository.existsById(dto.getId())) {
 			throw new Exception("No order to update");
 		}
-		return orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
+		return orderMapper.toDto(orderRepository.update(orderMapper.toEntity(dto)));
 	}
 	
-	public OrderDto getById(UUID uuid) {
-		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
-		OrderDto dto = orderMapper.toDto(orderRepository.findById(uuid).orElseThrow());
+	public OrderDto getById(UUID id) {
+		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(id));
+		OrderDto dto = orderMapper.toDto(orderRepository.findById(id).orElseThrow());
 		dto.setProducts(productsDto);
 		return dto;
 	}
-
+	
 	public List<OrderDto> getAll() {
 		List<OrderDto> list = new ArrayList<>();
 		for (OrderEntity it : orderRepository.findAll()) {

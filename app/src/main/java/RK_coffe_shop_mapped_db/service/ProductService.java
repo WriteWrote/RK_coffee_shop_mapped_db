@@ -34,7 +34,7 @@ public class ProductService {
 		if (!productRepository.existsById(dto.getId())) {
 			throw new Exception("No product to update");
 		}
-		return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
+		return productMapper.toDto(productRepository.update(productMapper.toEntity(dto)));
 	}
 
 	public ProductDto getById(UUID id) {
