@@ -47,8 +47,8 @@ public class OrderController {
 		return handler.handle(() -> orderService.getById(id));
 	}
 
-//	@GetMapping("/all")
-//	public Response<?> getAll() {
-//		return new ExceptionHandler<List<OrderDto>>().handle(orderService::getAll);
-//	}
+	@GetMapping("/all")
+	public Response<?> getAll() {
+		return new ExceptionHandler<List<OrderDto>>().handle(orderService::getAll);
+	}
 }

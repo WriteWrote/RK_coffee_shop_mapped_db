@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderLineRepository extends CommonCrudRepository<OrderLineEntity, UUID> {
@@ -16,8 +17,7 @@ public class OrderLineRepository extends CommonCrudRepository<OrderLineEntity, U
 		super("orders_lines", jdbcTemplate, orderLineRowMapper);
 	}
 	
-	List<OrderLineEntity> findOrderLineEntitiesByOrderId(UUID orderId) {
-		//todo not yet implemented
-		return null;
+	public List<OrderLineEntity> findOrderLineEntitiesByOrderId(UUID orderId) {
+		return findAll().stream().filter(it -> it.getOrderId().equals(orderId)).collect(Collectors.toList());
 	}
 }

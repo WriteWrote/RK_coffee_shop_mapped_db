@@ -10,7 +10,9 @@ import RK_coffe_shop_mapped_db.service.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -30,7 +32,6 @@ public class OrderService {
 			it.setId(UUID.randomUUID());
 			orderLineRepository.save(it);
 		});
-//		orderLineRepository.saveAll(orderLines);
 		return savedDto;
 	}
 
@@ -53,19 +54,19 @@ public class OrderService {
 		return orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
 	}
 	
-//	public OrderDto getById(UUID uuid) {
-//		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
-//		OrderDto dto = orderMapper.toDto(orderRepository.findById(uuid).orElseThrow());
-//		dto.setProducts(productsDto);
-//		return dto;
-//	}
+	public OrderDto getById(UUID uuid) {
+		Map<UUID, Integer> productsDto = orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(uuid));
+		OrderDto dto = orderMapper.toDto(orderRepository.findById(uuid).orElseThrow());
+		dto.setProducts(productsDto);
+		return dto;
+	}
 
-//	public List<OrderDto> getAll() {
-//		List<OrderDto> list = new ArrayList<>();
-//		for (OrderEntity it : orderRepository.findAll()) {
-//			OrderDto byId = this.getById(it.getId());
-//			list.add(byId);
-//		}
-//		return list;
-//	}
+	public List<OrderDto> getAll() {
+		List<OrderDto> list = new ArrayList<>();
+		for (OrderEntity it : orderRepository.findAll()) {
+			OrderDto byId = this.getById(it.getId());
+			list.add(byId);
+		}
+		return list;
+	}
 }
