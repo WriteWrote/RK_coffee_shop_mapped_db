@@ -1,7 +1,7 @@
 package RK_coffe_shop_mapped_db.db.repository;
 
 import RK_coffe_shop_mapped_db.db.entity.ProductEntity;
-import RK_coffe_shop_mapped_db.db.repository.rowmappers.ProductRowMapper;
+import RK_coffe_shop_mapped_db.db.repository.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

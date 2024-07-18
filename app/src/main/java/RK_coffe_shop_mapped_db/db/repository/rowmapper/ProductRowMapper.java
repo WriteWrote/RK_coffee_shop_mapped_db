@@ -1,4 +1,4 @@
-package RK_coffe_shop_mapped_db.db.repository.rowmappers;
+package RK_coffe_shop_mapped_db.db.repository.rowmapper;
 
 import RK_coffe_shop_mapped_db.db.entity.ProductEntity;
 import org.springframework.jdbc.core.RowMapper;
