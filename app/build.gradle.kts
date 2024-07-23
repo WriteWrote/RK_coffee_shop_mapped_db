@@ -21,7 +21,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     runtimeOnly("org.postgresql:postgresql")
-//    implementation("org.liquibase:liquibase-core")
     implementation ("org.flywaydb:flyway-core")
 
     compileOnly("org.projectlombok:lombok")
@@ -29,6 +28,8 @@ dependencies {
 
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
+    implementation("com.guicedee.services:slf4j:1.2.2.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("junit:junit:4.13.2")
