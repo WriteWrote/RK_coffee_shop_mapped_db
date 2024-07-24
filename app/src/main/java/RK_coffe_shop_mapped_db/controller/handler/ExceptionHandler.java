@@ -3,6 +3,7 @@ package RK_coffe_shop_mapped_db.controller.handler;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Callable;
@@ -20,5 +21,9 @@ public class ExceptionHandler<T> {
 			logger.info("operation fatal");
 			return new Response<>(500, exception.getMessage(), exception);
 		}
+	}
+
+	public ResponseEntity<T> handle(RuntimeException exception) {
+
 	}
 }
