@@ -1,7 +1,7 @@
 package RK_coffe_shop_mapped_db.controller;
 
-import RK_coffe_shop_mapped_db.controller.handler.ExceptionHandler;
-import RK_coffe_shop_mapped_db.controller.handler.Response;
+import RK_coffe_shop_mapped_db.controller.handler.ApiExceptionHandler;
+import RK_coffe_shop_mapped_db.controller.handler.ExceptionResponse;
 import RK_coffe_shop_mapped_db.dto.ProductDto;
 import RK_coffe_shop_mapped_db.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -25,16 +25,16 @@ import java.util.UUID;
 public class ProductController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ProductService productService;
-	private final ExceptionHandler<ProductDto> handler;
+	private final ApiExceptionHandler<ProductDto> handler;
 	
 	@PostMapping
-	public Response<?> create(@RequestBody ProductDto dto) {
+	public ExceptionResponse<?> create(@RequestBody ProductDto dto) {
 		logger.info("{} POST: create {}", this.getClass(), dto);
 		return handler.handle(() -> productService.create(dto));
 	}
 	
 	@DeleteMapping("/{id}")
-	public Response<?> delete(@PathVariable("id") UUID id) {
+	public ExceptionResponse<?> delete(@PathVariable("id") UUID id) {
 		logger.info("{} DELETE: delete {}", this.getClass(), id);
 		return handler.handle(() -> {
 			productService.delete(id);
@@ -43,20 +43,20 @@ public class ProductController {
 	}
 
 	@PutMapping
-	public Response<?> update(@RequestBody ProductDto dto) {
+	public ExceptionResponse<?> update(@RequestBody ProductDto dto) {
 		logger.info("{} PUT: update {}", this.getClass(), dto);
 		return handler.handle(() -> productService.update(dto));
 	}
 
 	@GetMapping("/{id}")
-	public Response<?> getById(@PathVariable("id") UUID id) {
+	public ExceptionResponse<?> getById(@PathVariable("id") UUID id) {
 		logger.info("{} GET: getById {}", this.getClass(), id);
 		return handler.handle(() -> productService.getById(id));
 	}
 
 	@GetMapping("/all")
-	public Response<?> getAll() {
+	public ExceptionResponse<?> getAll() {
 		logger.info("{} GET: getAll", this.getClass());
-		return new ExceptionHandler<List<ProductDto>>().handle(productService::getAll);
+		return new ApiExceptionHandler<List<ProductDto>>().handle(productService::getAll);
 	}
 }

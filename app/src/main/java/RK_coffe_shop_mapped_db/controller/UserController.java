@@ -1,8 +1,8 @@
 package RK_coffe_shop_mapped_db.controller;
 
 
-import RK_coffe_shop_mapped_db.controller.handler.ExceptionHandler;
-import RK_coffe_shop_mapped_db.controller.handler.Response;
+import RK_coffe_shop_mapped_db.controller.handler.ApiExceptionHandler;
+import RK_coffe_shop_mapped_db.controller.handler.ExceptionResponse;
 import RK_coffe_shop_mapped_db.dto.RequestUserDto;
 import RK_coffe_shop_mapped_db.dto.ResponseUserDto;
 import RK_coffe_shop_mapped_db.service.UserService;
@@ -27,17 +27,17 @@ import java.util.UUID;
 public class UserController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final UserService userService;
-	private final ExceptionHandler<ResponseUserDto> responseExceptionHandler;
-	private final ExceptionHandler<RequestUserDto> requestExceptionHandler;
+	private final ApiExceptionHandler<ResponseUserDto> responseExceptionHandler;
+	private final ApiExceptionHandler<RequestUserDto> requestExceptionHandler;
 	
 	@PostMapping
-	public Response<?> create(@RequestBody RequestUserDto dto) {
+	public ExceptionResponse<?> create(@RequestBody RequestUserDto dto) {
 		logger.info("{} POST: create {}", this.getClass(), dto);
 		return requestExceptionHandler.handle(() -> userService.create(dto));
 	}
 	
 	@DeleteMapping("/{id}")
-	public Response<?> delete(@PathVariable("id") UUID id) {
+	public ExceptionResponse<?> delete(@PathVariable("id") UUID id) {
 		logger.info("{} DELETE: delete {}", this.getClass(), id);
 		return responseExceptionHandler.handle(() -> {
 			userService.delete(id);
@@ -46,20 +46,20 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public Response<?> update(@RequestBody RequestUserDto dto) {
+	public ExceptionResponse<?> update(@RequestBody RequestUserDto dto) {
 		logger.info("{} PUT: update {}", this.getClass(), dto);
 		return requestExceptionHandler.handle(() -> userService.update(dto));
 	}
 	
 	@GetMapping("/{id}")
-	public Response<?> getById(@PathVariable("id") UUID id) {
+	public ExceptionResponse<?> getById(@PathVariable("id") UUID id) {
 		logger.info("{} GET: getById {}", this.getClass(), id);
 		return responseExceptionHandler.handle(() -> userService.getById(id));
 	}
 	
 	@GetMapping("/all")
-	public Response<?> getAll() {
+	public ExceptionResponse<?> getAll() {
 		logger.info("{} GET: getAll", this.getClass());
-		return new ExceptionHandler<List<ResponseUserDto>>().handle(userService::getAll);
+		return new ApiExceptionHandler<List<ResponseUserDto>>().handle(userService::getAll);
 	}
 }
