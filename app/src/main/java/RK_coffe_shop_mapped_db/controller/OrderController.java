@@ -26,7 +26,6 @@ import java.util.UUID;
 public class OrderController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final OrderService orderService;
-	private final ApiExceptionHandler handler;
 	
 	@PostMapping
 	public ResponseEntity<OrderDto> create(@RequestBody OrderDto dto) {

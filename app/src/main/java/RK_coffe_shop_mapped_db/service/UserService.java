@@ -25,24 +25,24 @@ public class UserService {
 
     public RequestUserDto create(RequestUserDto dto) {
         if (dto.getId() == null) {
-			logger.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
+            logger.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
             dto.setId(UUID.randomUUID());
         }
         return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
     }
 
-    public void delete(UUID uuid) throws Exception {
+    public void delete(UUID uuid) {
         if (!userRepository.existsById(uuid)) {
-			logger.error("Delete user error: no user exists with this id.");
-            throw new Exception("No user to delete");
+            logger.error("Delete user error: no user exists with this id.");
+            throw new RuntimeException("No user to delete");
         }
         userRepository.delete(uuid);
     }
 
-    public RequestUserDto update(RequestUserDto dto) throws Exception {
+    public RequestUserDto update(RequestUserDto dto) {
         if (!userRepository.existsById(dto.getId())) {
-			logger.error("Update user error: no user exists with this id.");
-            throw new Exception("No user to update");
+            logger.error("Update user error: no user exists with this id.");
+            throw new RuntimeException("No user to update");
         }
         var dbEntity = userRepository.findById(dto.getId()).orElseThrow();
         return requestUserMapper.toDto(userRepository.update(requestUserMapper.merge(dbEntity, dto)));

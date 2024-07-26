@@ -36,10 +36,10 @@ public class ProductService {
         productRepository.delete(id);
     }
 
-    public ProductDto update(ProductDto dto) throws Exception {
+    public ProductDto update(ProductDto dto) {
         if (!productRepository.existsById(dto.getId())) {
             logger.error("Update product error: no product exists with this id.");
-            throw new Exception("No product to update");
+            throw new RuntimeException("No product to update");
         }
         var dbEntity = productRepository.findById(dto.getId()).orElseThrow();
         return productMapper.toDto(productRepository.update(productMapper.merge(dbEntity, dto)));

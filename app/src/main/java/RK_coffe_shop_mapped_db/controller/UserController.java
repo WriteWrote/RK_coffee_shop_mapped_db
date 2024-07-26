@@ -9,6 +9,8 @@ import RK_coffe_shop_mapped_db.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,41 +27,49 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final UserService userService;
-	private final ApiExceptionHandler<ResponseUserDto> responseExceptionHandler;
-	private final ApiExceptionHandler<RequestUserDto> requestExceptionHandler;
-	
-	@PostMapping
-	public ExceptionResponse<?> create(@RequestBody RequestUserDto dto) {
-		logger.info("{} POST: create {}", this.getClass(), dto);
-		return requestExceptionHandler.handle(() -> userService.create(dto));
-	}
-	
-	@DeleteMapping("/{id}")
-	public ExceptionResponse<?> delete(@PathVariable("id") UUID id) {
-		logger.info("{} DELETE: delete {}", this.getClass(), id);
-		return responseExceptionHandler.handle(() -> {
-			userService.delete(id);
-			return null;
-		});
-	}
-	
-	@PutMapping
-	public ExceptionResponse<?> update(@RequestBody RequestUserDto dto) {
-		logger.info("{} PUT: update {}", this.getClass(), dto);
-		return requestExceptionHandler.handle(() -> userService.update(dto));
-	}
-	
-	@GetMapping("/{id}")
-	public ExceptionResponse<?> getById(@PathVariable("id") UUID id) {
-		logger.info("{} GET: getById {}", this.getClass(), id);
-		return responseExceptionHandler.handle(() -> userService.getById(id));
-	}
-	
-	@GetMapping("/all")
-	public ExceptionResponse<?> getAll() {
-		logger.info("{} GET: getAll", this.getClass());
-		return new ApiExceptionHandler<List<ResponseUserDto>>().handle(userService::getAll);
-	}
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final UserService userService;
+
+    @PostMapping
+    public ResponseEntity<RequestUserDto> create(@RequestBody RequestUserDto dto) {
+        logger.info("{} POST: create {}", this.getClass(), dto);
+        return new ResponseEntity<>(
+                userService.create(dto),
+                HttpStatus.CREATED
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
+        logger.info("{} DELETE: delete {}", this.getClass(), id);
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<RequestUserDto> update(@RequestBody RequestUserDto dto) {
+        logger.info("{} PUT: update {}", this.getClass(), dto);
+        return new ResponseEntity<>(
+                userService.update(dto),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseUserDto> getById(@PathVariable("id") UUID id) {
+        logger.info("{} GET: getById {}", this.getClass(), id);
+        return new ResponseEntity<>(
+                userService.getById(id),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ResponseUserDto>> getAll() {
+        logger.info("{} GET: getAll", this.getClass());
+        return new ResponseEntity<>(
+                userService.getAll(),
+                HttpStatus.OK
+        );
+    }
 }

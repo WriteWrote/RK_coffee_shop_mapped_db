@@ -7,6 +7,8 @@ import RK_coffe_shop_mapped_db.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,37 +25,49 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/products")
 public class ProductController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final ProductService productService;
-	private final ApiExceptionHandler<ProductDto> handler;
-	
-	@PostMapping
-	public ProductDto create(@RequestBody ProductDto dto) {
-		logger.info("{} POST: create {}", this.getClass(), dto);
-		return productService.create(dto);
-	}
-	
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") UUID id) throws Exception {
-		logger.info("{} DELETE: delete {}", this.getClass(), id);
-		productService.delete(id);
-	}
-	
-	@PutMapping
-	public ProductDto update(@RequestBody ProductDto dto){
-		logger.info("{} PUT: update {}", this.getClass(), dto);
-		return productService.update(dto);
-	}
-	
-	@GetMapping("/{id}")
-	public ExceptionResponse<?> getById(@PathVariable("id") UUID id) {
-		logger.info("{} GET: getById {}", this.getClass(), id);
-		return handler.handle(() -> productService.getById(id));
-	}
-	
-	@GetMapping("/all")
-	public ExceptionResponse<?> getAll() {
-		logger.info("{} GET: getAll", this.getClass());
-		return new ApiExceptionHandler<List<ProductDto>>().handle(productService::getAll);
-	}
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final ProductService productService;
+
+    @PostMapping
+    public ResponseEntity<ProductDto> create(@RequestBody ProductDto dto) {
+        logger.info("{} POST: create {}", this.getClass(), dto);
+        return new ResponseEntity<>(
+                productService.create(dto),
+                HttpStatus.CREATED
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") UUID id) throws Exception {
+        logger.info("{} DELETE: delete {}", this.getClass(), id);
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<ProductDto> update(@RequestBody ProductDto dto) {
+        logger.info("{} PUT: update {}", this.getClass(), dto);
+        return new ResponseEntity<>(
+                productService.update(dto),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDto> getById(@PathVariable("id") UUID id) {
+        logger.info("{} GET: getById {}", this.getClass(), id);
+        return new ResponseEntity<>(
+                productService.getById(id),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDto>> getAll() {
+        logger.info("{} GET: getAll", this.getClass());
+        return new ResponseEntity<>(
+                productService.getAll(),
+                HttpStatus.OK
+        );
+    }
 }

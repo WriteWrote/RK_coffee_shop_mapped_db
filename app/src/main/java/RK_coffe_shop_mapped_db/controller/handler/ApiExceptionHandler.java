@@ -9,19 +9,26 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	@ExceptionHandler(value = {RuntimeException.class})
-	public ResponseEntity<ExceptionResponse> handle(RuntimeException exception) {
-		var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
-		logger.error("Api exception: {}", exceptionResponse);
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-	}
-	
-	@ExceptionHandler(value = {Exception.class})
-	public ResponseEntity<ExceptionResponse> handle(Exception exception) {
-		var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
-		logger.error("Api exception: {}", exceptionResponse);
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-	}
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @ExceptionHandler(value = {Exception.class})
+    public ResponseEntity<ExceptionResponse> handle(Exception exception) {
+        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
+        logger.error("Api exception: {}", exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = {RuntimeException.class})
+    public ResponseEntity<ExceptionResponse> handle(RuntimeException exception) {
+        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
+        logger.error("Api runtime exception: {}", exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = {NoSuchFieldException.class})
+    public ResponseEntity<ExceptionResponse> handle(NoSuchFieldException exception) {
+        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
+        logger.error("Api NoSuchFieldException: {}", exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }
