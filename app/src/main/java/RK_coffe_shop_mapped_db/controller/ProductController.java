@@ -28,32 +28,29 @@ public class ProductController {
 	private final ApiExceptionHandler<ProductDto> handler;
 	
 	@PostMapping
-	public ExceptionResponse<?> create(@RequestBody ProductDto dto) {
+	public ProductDto create(@RequestBody ProductDto dto) {
 		logger.info("{} POST: create {}", this.getClass(), dto);
-		return handler.handle(() -> productService.create(dto));
+		return productService.create(dto);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ExceptionResponse<?> delete(@PathVariable("id") UUID id) {
+	public void delete(@PathVariable("id") UUID id) throws Exception {
 		logger.info("{} DELETE: delete {}", this.getClass(), id);
-		return handler.handle(() -> {
-			productService.delete(id);
-			return null;
-		});
+		productService.delete(id);
 	}
-
+	
 	@PutMapping
-	public ExceptionResponse<?> update(@RequestBody ProductDto dto) {
+	public ProductDto update(@RequestBody ProductDto dto){
 		logger.info("{} PUT: update {}", this.getClass(), dto);
-		return handler.handle(() -> productService.update(dto));
+		return productService.update(dto);
 	}
-
+	
 	@GetMapping("/{id}")
 	public ExceptionResponse<?> getById(@PathVariable("id") UUID id) {
 		logger.info("{} GET: getById {}", this.getClass(), id);
 		return handler.handle(() -> productService.getById(id));
 	}
-
+	
 	@GetMapping("/all")
 	public ExceptionResponse<?> getAll() {
 		logger.info("{} GET: getAll", this.getClass());

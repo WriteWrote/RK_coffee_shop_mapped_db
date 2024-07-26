@@ -1,0 +1,1 @@
+CREATE SCHEMA IF NOT EXISTS rk_coffee_shop;

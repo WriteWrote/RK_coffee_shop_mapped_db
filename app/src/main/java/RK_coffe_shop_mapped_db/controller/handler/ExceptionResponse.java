@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class ExceptionResponse<T> {
+public class ExceptionResponse {
     private Throwable throwable;
     private String message;
 }

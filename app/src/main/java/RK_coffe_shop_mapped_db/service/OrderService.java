@@ -40,11 +40,11 @@ public class OrderService {
         });
         return savedDto;
     }
-
-    public void delete(UUID id) throws Exception {
+    
+    public void delete(UUID id) {
         if (!orderRepository.existsById(id)) {
             logger.error("Delete order error: no order exists with this id.");
-            throw new Exception("No order to delete");
+            throw new RuntimeException("No order to delete");
         }
         orderLineRepository.findOrderLineEntitiesByOrderId(id).forEach(it -> orderLineRepository.delete(it.getId()));
         orderRepository.delete(id);
@@ -54,10 +54,10 @@ public class OrderService {
      * Предполагается, что после создания содержимое заказа уже не может быть изменено,
      * только поля получателя: Фио, адрес, статус заказа и т.д.
      */
-    public OrderDto update(OrderDto dto) throws Exception {
+    public OrderDto update(OrderDto dto) {
         if (!orderRepository.existsById(dto.getId())) {
             logger.error("Update order error: no order exists with this id.");
-            throw new Exception("No order to update");
+            throw new RuntimeException("No order to update");
         }
         var dbEntity = orderRepository.findById(dto.getId()).orElseThrow();
         return orderMapper.toDto(orderRepository.update(orderMapper.merge(dbEntity, dto)));
