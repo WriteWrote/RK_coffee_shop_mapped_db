@@ -1,5 +1,6 @@
 package RK_coffe_shop_mapped_db.controller.handler;
 
+import RK_coffe_shop_mapped_db.exception.InternalError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,13 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = {NoSuchFieldException.class})
     public ResponseEntity<ExceptionResponse> handle(NoSuchFieldException exception) {
+        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
+        logger.error("Api NoSuchFieldException: {}", exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionResponse> handle(InternalError exception) {
         var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
         logger.error("Api NoSuchFieldException: {}", exceptionResponse);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);

@@ -32,6 +32,7 @@ dependencies {
 
     implementation("com.guicedee.services:slf4j:1.2.2.1")
 
+    testImplementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("junit:junit:4.13.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -46,4 +47,9 @@ dependencies {
 
 application {
     mainClass.set("RK_coffe_shop_mapped_db.App")
+}
+
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

@@ -1,8 +1,10 @@
 package RK_coffe_shop_mapped_db.db.repository;
 
+import RK_coffe_shop_mapped_db.exception.InternalError;
 import com.google.common.base.CaseFormat;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,9 +15,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Getter
 @RequiredArgsConstructor
 public abstract class CommonCrudRepository<T, ID> {    //todo think about marker interface Entity maybe
@@ -68,11 +70,17 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 		return object;    //todo think about it
 	}
 	
-	public T update(T object) throws NoSuchFieldException {
+	public T update(T object) throws InternalError {
 		StringBuilder sqlBuilder = new StringBuilder();
 		List<Field> fields = Arrays.stream(object.getClass().getDeclaredFields()).collect(Collectors.toList());
 		fields.remove(0);
-		fields.add(object.getClass().getDeclaredField("id"));
+		try {
+			fields.add(object.getClass().getDeclaredField("id"));
+		} catch (NoSuchFieldException e) {
+			var message = "No such field is present: id";
+			log.error(message);
+			throw new InternalError(message);
+		}
 		Object[] values = fields.stream().map(it -> {
 			try {
 				var getterName = "get" + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, it.getName());
