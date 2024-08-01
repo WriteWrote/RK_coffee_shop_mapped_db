@@ -9,3 +9,5 @@ spring:
   flyway:
     baselineOnMigrate: true
     schemas: rk_coffee_shop
+db:
+  schema: rk_coffee_shop
