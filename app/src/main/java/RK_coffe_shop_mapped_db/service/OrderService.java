@@ -8,8 +8,7 @@ import RK_coffe_shop_mapped_db.dto.OrderDto;
 import RK_coffe_shop_mapped_db.service.mapper.OrderLineMapper;
 import RK_coffe_shop_mapped_db.service.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final OrderRepository orderRepository;
     private final OrderLineRepository orderLineRepository;
     private final OrderLineMapper orderLineMapper;
@@ -28,13 +27,13 @@ public class OrderService {
 
     public OrderDto create(OrderDto dto) {
         if (dto.getId() == null) {
-            logger.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
+            log.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
             dto.setId(UUID.randomUUID());
         }
         OrderDto savedDto = orderMapper.toDto(orderRepository.save(orderMapper.toEntity(dto)));
         List<OrderLineEntity> orderLines = orderLineMapper.toEntities(dto.getProducts(), savedDto.getId());
         orderLines.forEach(it -> {
-            logger.warn("Warning: " + it.getClass() + " has empty id. This empty id field was randomized.");
+            log.warn("Warning: " + it.getClass() + " has empty id. This empty id field was randomized.");
             it.setId(UUID.randomUUID());
             orderLineRepository.save(it);
         });
@@ -43,7 +42,7 @@ public class OrderService {
     
     public void delete(UUID id) {
         if (!orderRepository.existsById(id)) {
-            logger.error("Delete order error: no order exists with this id.");
+            log.error("Delete order error: no order exists with this id.");
             throw new RuntimeException("No order to delete");
         }
         orderLineRepository.findOrderLineEntitiesByOrderId(id).forEach(it -> orderLineRepository.delete(it.getId()));
@@ -56,7 +55,7 @@ public class OrderService {
      */
     public OrderDto update(OrderDto dto) {
         if (!orderRepository.existsById(dto.getId())) {
-            logger.error("Update order error: no order exists with this id.");
+            log.error("Update order error: no order exists with this id.");
             throw new RuntimeException("No order to update");
         }
         var dbEntity = orderRepository.findById(dto.getId()).orElseThrow();

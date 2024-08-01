@@ -6,26 +6,24 @@ import RK_coffe_shop_mapped_db.dto.ResponseUserDto;
 import RK_coffe_shop_mapped_db.service.mapper.RequestUserMapper;
 import RK_coffe_shop_mapped_db.service.mapper.ResponseUserMapper;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final UserRepository userRepository;
     private final RequestUserMapper requestUserMapper;
     private final ResponseUserMapper responseUserMapper;
 
     public RequestUserDto create(RequestUserDto dto) {
         if (dto.getId() == null) {
-            logger.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
+            log.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
             dto.setId(UUID.randomUUID());
         }
         return requestUserMapper.toDto(userRepository.save(requestUserMapper.toEntity(dto)));
@@ -33,7 +31,7 @@ public class UserService {
 
     public void delete(UUID uuid) {
         if (!userRepository.existsById(uuid)) {
-            logger.error("Delete user error: no user exists with this id.");
+            log.error("Delete user error: no user exists with this id.");
             throw new RuntimeException("No user to delete");
         }
         userRepository.delete(uuid);
@@ -41,7 +39,7 @@ public class UserService {
 
     public RequestUserDto update(RequestUserDto dto) {
         if (!userRepository.existsById(dto.getId())) {
-            logger.error("Update user error: no user exists with this id.");
+            log.error("Update user error: no user exists with this id.");
             throw new RuntimeException("No user to update");
         }
         var dbEntity = userRepository.findById(dto.getId()).orElseThrow();

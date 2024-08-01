@@ -10,6 +10,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -19,18 +25,16 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+//    implementation("org.springframework.boot:spring-boot-starter-security")
 
     runtimeOnly("org.postgresql:postgresql")
-    implementation ("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-core")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
-
-    implementation("com.guicedee.services:slf4j:1.2.2.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -48,7 +52,6 @@ dependencies {
 application {
     mainClass.set("RK_coffe_shop_mapped_db.App")
 }
-
 
 tasks.withType<Test> {
     useJUnitPlatform()

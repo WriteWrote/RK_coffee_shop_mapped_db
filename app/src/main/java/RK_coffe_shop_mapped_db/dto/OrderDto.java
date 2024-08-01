@@ -1,6 +1,11 @@
 package RK_coffe_shop_mapped_db.dto;
 
-import lombok.*;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
 
 import java.util.Map;
 import java.util.UUID;

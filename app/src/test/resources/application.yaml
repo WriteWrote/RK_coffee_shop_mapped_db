@@ -1,0 +1,11 @@
+spring:
+  main:
+    lazy-initialization: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  flyway:
+    baselineOnMigrate: true
+    schemas: rk_coffee_shop

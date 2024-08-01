@@ -4,25 +4,23 @@ import RK_coffe_shop_mapped_db.db.repository.ProductRepository;
 import RK_coffe_shop_mapped_db.dto.ProductDto;
 import RK_coffe_shop_mapped_db.service.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
     public ProductDto create(ProductDto dto) {
         if (dto.getId() == null) {
-            logger.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
+            log.warn("Warning: " + dto.getClass() + " has empty id. This empty id field was randomized.");
             dto.setId(UUID.randomUUID());
         }
         return productMapper.toDto(productRepository.save(productMapper.toEntity(dto)));
@@ -30,7 +28,7 @@ public class ProductService {
 
     public void delete(UUID id) throws Exception {
         if (!productRepository.existsById(id)) {
-            logger.error("Delete product error: no product exists with this id.");
+            log.error("Delete product error: no product exists with this id.");
             throw new Exception("No product to delete");
         }
         productRepository.delete(id);
@@ -38,7 +36,7 @@ public class ProductService {
 
     public ProductDto update(ProductDto dto) {
         if (!productRepository.existsById(dto.getId())) {
-            logger.error("Update product error: no product exists with this id.");
+            log.error("Update product error: no product exists with this id.");
             throw new RuntimeException("No product to update");
         }
         var dbEntity = productRepository.findById(dto.getId()).orElseThrow();
