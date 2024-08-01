@@ -11,15 +11,16 @@ import java.util.UUID;
 
 @Component
 public class OrderRowMapper implements RowMapper<OrderEntity> {
-	@Override
-	public OrderEntity mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-		return new OrderEntity(
-			UUID.fromString(resultSet.getString("id")),
-			UUID.fromString(resultSet.getString("customer_id")),    //todo hazardous
-			resultSet.getString("customer_phone"),
-			resultSet.getString("customer_fio"),
-			resultSet.getString("address"),
-			resultSet.getString("status")
-		);
-	}
+    @Override
+    public OrderEntity mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+        var nullableCustomerId = resultSet.getString("customer_id");
+        return new OrderEntity(
+                UUID.fromString(resultSet.getString("id")),
+                nullableCustomerId != null ? UUID.fromString(resultSet.getString("customer_id")) : null,
+                resultSet.getString("customer_phone"),
+                resultSet.getString("customer_fio"),
+                resultSet.getString("address"),
+                resultSet.getString("status")
+        );
+    }
 }

@@ -42,7 +42,7 @@ public class OrderControllerTest extends AbstractTestContainer {
 	
 	@Test
 	public void getAll() throws Exception {
-		var result = mockMvc.perform(get(BASE_URL)).andExpect(status().isOk()).andReturn();
+		var result = mockMvc.perform(get(BASE_URL+"/all")).andExpect(status().isOk()).andReturn();
 		var responseOrdersList = objectMapper.readValue(result.getResponse().getContentAsString(), OrderDto[].class);
 		Assertions.assertNotEquals(0, responseOrdersList.length);
 	}
