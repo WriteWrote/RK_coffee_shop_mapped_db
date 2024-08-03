@@ -1,17 +1,14 @@
 package RK_coffe_shop_mapped_db.dto;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor

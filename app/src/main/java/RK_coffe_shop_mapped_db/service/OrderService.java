@@ -37,9 +37,10 @@ public class OrderService {
             it.setId(UUID.randomUUID());
             orderLineRepository.save(it);
         });
+        savedDto.setProducts(orderLineMapper.fromEntities(orderLines));
         return savedDto;
     }
-    
+
     public void delete(UUID id) {
         if (!orderRepository.existsById(id)) {
             log.error("Delete order error: no order exists with this id.");
@@ -59,7 +60,9 @@ public class OrderService {
             throw new RuntimeException("No order to update");
         }
         var dbEntity = orderRepository.findById(dto.getId()).orElseThrow();
-        return orderMapper.toDto(orderRepository.update(orderMapper.merge(dbEntity, dto)));
+        OrderDto orderDto = orderMapper.toDto(orderRepository.update(orderMapper.merge(dbEntity, dto)));
+        orderDto.setProducts(orderLineMapper.fromEntities(orderLineRepository.findOrderLineEntitiesByOrderId(orderDto.getId())));
+        return orderDto;
     }
 
     public OrderDto getById(UUID id) {

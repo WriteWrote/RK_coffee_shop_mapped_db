@@ -12,4 +12,4 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 @AutoConfigureMockMvc
 @ContextConfiguration(initializers = {DockerPostgreDataSourceInitializer.class})
-public abstract class AbstractTestContainer { }
+public abstract class BaseTestClassConfig { }

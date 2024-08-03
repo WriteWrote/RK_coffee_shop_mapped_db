@@ -25,13 +25,6 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = {NoSuchFieldException.class})
-    public ResponseEntity<ExceptionResponse> handle(NoSuchFieldException exception) {
-        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
-        log.error("Api NoSuchFieldException: {}", exceptionResponse);
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler
     public ResponseEntity<ExceptionResponse> handle(InternalError exception) {
         var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
