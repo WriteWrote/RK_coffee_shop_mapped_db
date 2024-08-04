@@ -11,7 +11,7 @@ public class DockerPostgreDataSourceInitializer implements ApplicationContextIni
 
     @Container
     private final TestPostgreSQLContainer postgreSQLContainer = new TestPostgreSQLContainer("postgres:13.1")
-            .withDatabaseName("CoffeeShopDB")
+            .withDatabaseName("postgres")
             .withUsername("postgres")
             .withPassword("postgres")
             .withInitScript("db/init.sql");
