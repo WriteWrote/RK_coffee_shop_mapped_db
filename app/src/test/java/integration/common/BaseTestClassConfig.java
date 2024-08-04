@@ -7,9 +7,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest(classes = {App.class})
-@ActiveProfiles("integration-test")
 @Testcontainers
 @AutoConfigureMockMvc
+@ActiveProfiles("integration-test")
+@SpringBootTest(classes = {App.class})
 @ContextConfiguration(initializers = {DockerPostgreDataSourceInitializer.class})
 public abstract class BaseTestClassConfig { }
