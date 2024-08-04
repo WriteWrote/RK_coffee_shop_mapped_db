@@ -1,5 +1,6 @@
 package integration.common;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,7 +18,7 @@ public class DockerPostgreDataSourceInitializer implements ApplicationContextIni
             .withInitScript("db/init.sql");
 
     @Override
-    public void initialize(ConfigurableApplicationContext applicationContext) {
+    public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
         postgreSQLContainer.start();
         TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
                 applicationContext,

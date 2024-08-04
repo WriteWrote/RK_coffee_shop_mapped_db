@@ -11,15 +11,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class DatasourceConfig {
 	@Bean
-	@Primary    // it is used because we can possibly have several datasources
+	@Primary
 	@ConfigurationProperties(prefix = "spring.datasource")
 	public HikariDataSource hikariDataSource() {
-		return DataSourceBuilder
+		var datasource = DataSourceBuilder
 			.create()
 			.type(HikariDataSource.class)
 			.build();
+        datasource.setSchema("rk_coffee_shop");
+        return datasource;
 	}
-	
+
 	@Bean
 	public JdbcTemplate jdbcTemplate(HikariDataSource hikariDataSource) {
 		return new JdbcTemplate(hikariDataSource);

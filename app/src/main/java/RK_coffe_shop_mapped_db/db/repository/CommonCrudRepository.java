@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Getter
 @RequiredArgsConstructor
-public abstract class CommonCrudRepository<T, ID> {    //todo think about marker interface Entity maybe
+public abstract class CommonCrudRepository<T, ID> {
 	@Value("${db.schema}")
 	private String schemaName;
 	
@@ -29,7 +29,6 @@ public abstract class CommonCrudRepository<T, ID> {    //todo think about marker
 	
 	private final RowMapper<T> localRawMapper;
 	//todo abstract dao pattern
-	//todo указать схему в datasource для Entity
 	public T save(T object) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		List<Field> fields = Arrays.stream(object.getClass().getDeclaredFields()).toList();
