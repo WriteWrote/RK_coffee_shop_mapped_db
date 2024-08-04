@@ -1,9 +1,10 @@
 package integration;
 
 import RK_coffe_shop_mapped_db.dto.OrderDto;
+import RK_coffe_shop_mapped_db.dto.ProductDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import integration.common.BaseTestClassConfig;
-import integration.testfactory.OrderDtoProvider;
+import integration.testfactory.ProductDtoProvider;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -27,10 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql("/db/populate-db-test.sql")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = {OrderDtoProvider.class})
-public class OrderControllerTest extends BaseTestClassConfig {
+@ContextConfiguration(classes = {ProductDtoProvider.class})
+public class ProductControllerTest extends BaseTestClassConfig {
 
-    private static final String BASE_URL = "/orders";
+    private static final String BASE_URL = "/products";
 
     @Autowired
     private MockMvc mockMvc;
@@ -39,12 +40,12 @@ public class OrderControllerTest extends BaseTestClassConfig {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private OrderDtoProvider orderDtoProvider;
+    private ProductDtoProvider productDtoProvider;
 
     @Test
     @Order(1)
     public void createOrderIdNull_ReturnOk() throws Exception {
-        var createdDto = orderDtoProvider.getValidOrderDto(true, false, false);
+        var createdDto = productDtoProvider.getValidUserDto(true, false);
         var response = mockMvc.perform(post(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createdDto)))
@@ -52,7 +53,7 @@ public class OrderControllerTest extends BaseTestClassConfig {
                 .andReturn();
         var returnedDto = objectMapper.readValue(
                 response.getResponse().getContentAsString(),
-                OrderDto.class
+                ProductDto.class
         );
         assertNotNull(returnedDto);
         assertNotNull(returnedDto.getId());
@@ -62,7 +63,7 @@ public class OrderControllerTest extends BaseTestClassConfig {
     @Test
     @Order(2)
     public void deleteOrder_ReturnNoContent() throws Exception {
-        var dtoForDeletion = orderDtoProvider.getValidOrderDto(false, true, false);
+        var dtoForDeletion = productDtoProvider.getValidUserDto(false, true);
         mockMvc.perform(post(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dtoForDeletion)))
@@ -74,12 +75,12 @@ public class OrderControllerTest extends BaseTestClassConfig {
     @Test
     @Order(3)
     public void updateOrder_ReturnUpdatedOrder() throws Exception {
-        var modifiedDto = orderDtoProvider.getValidOrderDto(false, true, true);
+        var modifiedDto = productDtoProvider.getValidUserDto(false, true);
         mockMvc.perform(post(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(modifiedDto)))
                 .andExpect(status().isCreated());
-        modifiedDto.setPhone("01234567890");
+        modifiedDto.setDescription("New Description");
         var response = mockMvc.perform(put(BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(modifiedDto)))
@@ -87,7 +88,7 @@ public class OrderControllerTest extends BaseTestClassConfig {
                 .andReturn();
         var returnedDto = objectMapper.readValue(
                 response.getResponse().getContentAsString(),
-                OrderDto.class
+                ProductDto.class
         );
         assertNotNull(returnedDto);
         assertDtoFieldEqualsExceptId(modifiedDto, returnedDto);
@@ -96,13 +97,13 @@ public class OrderControllerTest extends BaseTestClassConfig {
     @Test
     @Order(4)
     public void getById_ReturnOk() throws Exception {
-        var expectedDto = orderDtoProvider.getValidOrderDto(false, false, false);
+        var expectedDto = productDtoProvider.getValidUserDto(false, false);
         var response = mockMvc.perform(get(BASE_URL + "/{id}", expectedDto.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
         var returnedDto = objectMapper.readValue(
                 response.getResponse().getContentAsString(),
-                OrderDto.class
+                ProductDto.class
         );
         assertNotNull(returnedDto);
         assertDtoFieldEqualsExceptId(expectedDto, returnedDto);
@@ -122,12 +123,8 @@ public class OrderControllerTest extends BaseTestClassConfig {
         assertNotEquals(0, returnedDtoList.length);
     }
 
-    private void assertDtoFieldEqualsExceptId(OrderDto expectedDto, OrderDto actualDto) {
-        assertEquals(expectedDto.getCustomerId(), actualDto.getCustomerId());
-        assertEquals(expectedDto.getPhone(), actualDto.getPhone());
-        assertEquals(expectedDto.getFio(), actualDto.getFio());
-        assertEquals(expectedDto.getAddress(), actualDto.getAddress());
-        assertEquals(expectedDto.getStatus(), actualDto.getStatus());
-        assertEquals(expectedDto.getProducts(), actualDto.getProducts());
+    private void assertDtoFieldEqualsExceptId(ProductDto expectedDto, ProductDto actualDto) {
+        assertEquals(expectedDto.getTitle(), actualDto.getTitle());
+        assertEquals(expectedDto.getDescription(), actualDto.getDescription());
     }
 }
