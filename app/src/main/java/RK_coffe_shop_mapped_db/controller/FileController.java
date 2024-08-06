@@ -3,7 +3,6 @@ package RK_coffe_shop_mapped_db.controller;
 import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
 import RK_coffe_shop_mapped_db.service.FileService;
-import jdk.jfr.ContentType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +22,12 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<FileInfoDto> upload(@RequestParam("file") MultipartFile file, @RequestParam("contentType") ContentType contentType, @RequestParam("path") Path path) {
+    public ResponseEntity<FileInfoDto> upload(@RequestParam("file") MultipartFile file, @RequestParam("extension") String extension, @RequestParam("path") Path path) {
         try {
             return new ResponseEntity<>(
                     fileService.writeFileInMemory(new FileWithContentDto(
                             file.getInputStream(),
-                            contentType,
+                            extension,
                             path
                     )),
                     HttpStatus.CREATED

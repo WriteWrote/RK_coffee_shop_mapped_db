@@ -15,6 +15,6 @@ import java.nio.file.Path;
 @AllArgsConstructor
 public class FileWithContentDto {
     private InputStream inputStream;
-    private ContentType contentType;
+    private String extension;
     private Path path;
 }

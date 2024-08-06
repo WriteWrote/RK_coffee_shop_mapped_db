@@ -1,30 +1,30 @@
 package RK_coffe_shop_mapped_db.db.repository.filerepository;
 
+import RK_coffe_shop_mapped_db.db.entity.FileMetadataEntity;
+import RK_coffe_shop_mapped_db.db.repository.CommonCrudRepository;
+import RK_coffe_shop_mapped_db.db.repository.rowmapper.FileMetadataRowMapper;
 import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Slf4j
-public class RealFileRepository implements IFileRepository {
-    private final Path saveDir;
+public class RealFileRepository extends CommonCrudRepository<FileMetadataEntity, UUID> implements IFileRepository {
+    private final Path rootSaveDir;
 
-    public RealFileRepository(String saveDir) {
-        this(Path.of(saveDir));
-    }
-
-    public RealFileRepository(Path saveDir) {
-        if (Files.isDirectory(saveDir)) {
-            this.saveDir = saveDir;
+    public RealFileRepository(Path rootSaveDir) {
+        super("file_metadata", new JdbcTemplate(), new FileMetadataRowMapper());
+        if (Files.isDirectory(rootSaveDir)) {
+            this.rootSaveDir = rootSaveDir;
         } else {
             log.warn("Custom root path is invalid, assigning default root path.");
-            this.saveDir = Path.of("D:\\Projects\\trash");
+            this.rootSaveDir = Path.of("D:\\Projects\\trash");
         }
     }
 
@@ -38,20 +38,21 @@ public class RealFileRepository implements IFileRepository {
          * 4. save file to disk
          */
 
-//        try (InputStream file = fileWithContentDto.getInputStream()) {
-//            Path dirPath = rootPath.resolve(uuid.toString());
-//            if (!Files.exists(dirPath)) {
-//                Files.createDirectory(dirPath);
-//            }
-//            Path filePath = dirPath.resolve(uuid.toString());
-//            Path metaData = dirPath.resolve(METADATA_TXT);
-//            Files.copy(file, filePath);
-//            Files.writeString(metaData, request.contentType(), StandardOpenOption.CREATE);
-//            return new FileResponse(dirPath, dirPath.getFileName().toString(), LocalDateTime.now(), request.contentType(), file);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-        return null;
+        try (InputStream file = fileWithContentDto.getInputStream()) {
+            UUID generatedId = UUID.randomUUID();
+            Path generatedPath = this.rootSaveDir.resolve(fileWithContentDto.getPath())
+                    .resolve(generatedId.toString())
+                    .resolve(".")
+                    .resolve(fileWithContentDto.getExtension());
+            save(new FileMetadataEntity(
+                    generatedId,
+                    generatedPath.toString(),
+                    fileWithContentDto.getExtension()
+            ));
+            Files.copy(file, generatedPath);
+            return new FileInfoDto(generatedId, generatedPath.toString(), LocalDateTime.now().toString());
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 }
