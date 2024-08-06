@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class ApiExceptionHandler {
-    @ExceptionHandler(value = {Exception.class})
-    public ResponseEntity<ExceptionResponse> handle(Exception exception) {
-        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
-        log.error("Api exception: {}", exceptionResponse);
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(value = {Exception.class})
+//    public ResponseEntity<ExceptionResponse> handle(Exception exception) {
+//        var exceptionResponse = new ExceptionResponse(exception, exception.getMessage());
+//        log.error("Api exception: {}", exceptionResponse);
+//        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(value = {RuntimeException.class})
     public ResponseEntity<ExceptionResponse> handle(RuntimeException exception) {
