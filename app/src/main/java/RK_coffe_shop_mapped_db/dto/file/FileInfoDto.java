@@ -12,5 +12,5 @@ import java.util.UUID;
 public class FileInfoDto {
     private UUID id;
     private String path;
-    private String createdAt;
+//    private String createdAt; //todo alter table to store this data
 }

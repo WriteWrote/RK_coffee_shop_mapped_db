@@ -8,15 +8,28 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 @AllArgsConstructor
 public class FileService {
-    private FileProxy fileRepository;
+    private IFileRepository fileRepository;
 
     public FileInfoDto writeFileInMemory(FileWithContentDto fileWithContentDto) {
         // there goes work with factorybean?
-
         return fileRepository.save(fileWithContentDto);
+    }
+
+    public FileInfoDto getFileInfoById(UUID id) {
+        var storedInfo = fileRepository.getInfoById(id);
+        return new FileInfoDto(
+                storedInfo.getId(),
+                storedInfo.getFilepath()
+        );
+    }
+
+    public FileWithContentDto getFileContentById(UUID id) {
+        return null;
     }
 }
