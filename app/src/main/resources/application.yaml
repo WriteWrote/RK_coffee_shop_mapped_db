@@ -12,3 +12,4 @@ spring:
     baseline-on-migrate: true
 db:
   schema: rk_coffee_shop
+root-dir: "D:\\Projects\\trash"

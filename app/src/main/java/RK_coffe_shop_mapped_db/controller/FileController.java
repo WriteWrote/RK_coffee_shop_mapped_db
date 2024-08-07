@@ -4,7 +4,9 @@ import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
 import RK_coffe_shop_mapped_db.service.FileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,11 +42,12 @@ public class FileController {
     }
 
     @GetMapping("/{id}/download")
-    public ResponseEntity<FileWithContentDto> download(@PathVariable("id") UUID id) {
-        return new ResponseEntity<>(
-                fileService.getFileContentById(id),
-                HttpStatus.CREATED
-        );
+    public ResponseEntity<InputStreamResource> download(@PathVariable("id") UUID id) {
+        var serviceResponse = fileService.getFileContentById(id);
+        var mediaTypeAsString = "application/".concat(serviceResponse.getExtension().substring(1, serviceResponse.getExtension().length() - 1));
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(mediaTypeAsString))
+                .body(new InputStreamResource(serviceResponse.getInputStream()));
     }
 
     @GetMapping("/{id}/info")
@@ -59,7 +62,7 @@ public class FileController {
      * upload
      * download
      * delete
-     * getByName
+     * getInfo
      * filter
      */
 }

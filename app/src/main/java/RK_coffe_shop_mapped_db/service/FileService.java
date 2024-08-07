@@ -17,7 +17,6 @@ public class FileService {
     private IFileRepository fileRepository;
 
     public FileInfoDto writeFileInMemory(FileWithContentDto fileWithContentDto) {
-        // there goes work with factorybean?
         return fileRepository.save(fileWithContentDto);
     }
 
@@ -30,6 +29,6 @@ public class FileService {
     }
 
     public FileWithContentDto getFileContentById(UUID id) {
-        return null;
+        return fileRepository.getContentById(id);
     }
 }

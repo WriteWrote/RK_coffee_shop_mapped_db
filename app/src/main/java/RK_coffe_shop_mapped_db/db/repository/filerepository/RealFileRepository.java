@@ -7,9 +7,12 @@ import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,12 +24,12 @@ import java.util.UUID;
 @Slf4j
 @Repository
 public class RealFileRepository extends CommonCrudRepository<FileMetadataEntity, UUID> implements IFileRepository {
-    private final Path rootSaveDir;
+    @Value("${root-dir}")
+    private String rootSaveDir;
 
     @Autowired
     public RealFileRepository(JdbcTemplate jdbcTemplate, FileMetadataRowMapper fileMetadataRowMapper) {
         super("file_metadata", jdbcTemplate, fileMetadataRowMapper);
-        this.rootSaveDir = Path.of("D:\\Projects\\trash");
     }
 
     @Override
@@ -34,30 +37,48 @@ public class RealFileRepository extends CommonCrudRepository<FileMetadataEntity,
         try (InputStream file = fileWithContentDto.getInputStream()) {
             UUID generatedId = UUID.randomUUID();
             Path generatedPath = Paths.get(
-                    this.rootSaveDir.toString()
+                    this.rootSaveDir
             );
+
             if (!Files.isDirectory(generatedPath)) {
                 Files.createDirectory(generatedPath);
             }
+
             generatedPath = generatedPath.resolve(generatedId + fileWithContentDto.getExtension());
             Files.write(generatedPath, file.readAllBytes(), StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
+
             save(new FileMetadataEntity(
                     generatedId,
                     generatedPath.toString(),
                     fileWithContentDto.getExtension()
             ));
+
             return new FileInfoDto(generatedId, generatedPath.toString()
 //                    , LocalDateTime.now().toString()
             );
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RuntimeException();       //todo change to cannotsavefile custom exeption
         }
     }
 
     @Override
     public FileWithContentDto getContentById(UUID id) {
+        var fileMetadata = getInfoById(id);
+        var path = Path.of(fileMetadata.getFilepath());
 
-        return null;
+        if (!Files.isReadable(path)) {
+            throw new RuntimeException();   //todo change to notfoundfile custom ex
+        }
+
+        try {
+            var content = Files.readAllBytes(path);
+            return new FileWithContentDto(
+                    new ByteArrayInputStream(content),
+                    fileMetadata.getFileExtension()
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
