@@ -16,10 +16,10 @@ public class FileProxy implements IFileRepository {
     private RealFileRepository realFileRepository;
 
     @Override
-    public FileInfoDto save(FileWithContentDto fileWithContentDto) {
+    public FileInfoDto saveContentById(FileWithContentDto fileWithContentDto) {
         System.out.println("Proxy was there");
 
-        return realFileRepository.save(fileWithContentDto);
+        return realFileRepository.saveContentById(fileWithContentDto);
     }
 
     @Override
@@ -29,9 +29,17 @@ public class FileProxy implements IFileRepository {
         return realFileRepository.getContentById(id);
     }
 
+    @Override
     public FileMetadataEntity getInfoById(UUID id) {
         System.out.println("Proxy was there");
 
         return realFileRepository.getInfoById(id);
+    }
+
+    @Override
+    public void deleteContentById(UUID id) {
+        System.out.println("Proxy was there");
+
+        realFileRepository.delete(id);
     }
 }

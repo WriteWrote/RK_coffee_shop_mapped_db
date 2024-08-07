@@ -8,6 +8,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,11 +59,9 @@ public class FileController {
         );
     }
 
-    /**
-     * upload
-     * download
-     * delete
-     * getInfo
-     * filter
-     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") UUID id) {
+        fileService.deleteFileById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.FileSystemUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class RealFileRepository extends CommonCrudRepository<FileMetadataEntity,
     }
 
     @Override
-    public FileInfoDto save(FileWithContentDto fileWithContentDto) {
+    public FileInfoDto saveContentById(FileWithContentDto fileWithContentDto) {
         try (InputStream file = fileWithContentDto.getInputStream()) {
             UUID generatedId = UUID.randomUUID();
             Path generatedPath = Paths.get(
@@ -84,5 +85,23 @@ public class RealFileRepository extends CommonCrudRepository<FileMetadataEntity,
     @Override
     public FileMetadataEntity getInfoById(UUID id) {
         return findById(id).orElseThrow();
+    }
+
+    @Override
+    public void deleteContentById(UUID id) {
+        var fileMetadata = getInfoById(id);
+        var path = Path.of(fileMetadata.getFilepath());
+
+        if (!Files.isReadable(path)) {
+            throw new RuntimeException();   //todo change to notfoundfile custom ex
+        }
+
+        try {
+//            FileSystemUtils.deleteRecursively(path);
+            Files.delete(path);
+            delete(fileMetadata.getId());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

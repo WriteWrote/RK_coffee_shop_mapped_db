@@ -1,23 +1,20 @@
 package RK_coffe_shop_mapped_db.service;
 
-import RK_coffe_shop_mapped_db.db.repository.filerepository.FileProxy;
 import RK_coffe_shop_mapped_db.db.repository.filerepository.IFileRepository;
 import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Slf4j
 @Service
 @AllArgsConstructor
 public class FileService {
     private IFileRepository fileRepository;
 
     public FileInfoDto writeFileInMemory(FileWithContentDto fileWithContentDto) {
-        return fileRepository.save(fileWithContentDto);
+        return fileRepository.saveContentById(fileWithContentDto);
     }
 
     public FileInfoDto getFileInfoById(UUID id) {
@@ -30,5 +27,9 @@ public class FileService {
 
     public FileWithContentDto getFileContentById(UUID id) {
         return fileRepository.getContentById(id);
+    }
+
+    public void deleteFileById(UUID id) {
+        fileRepository.deleteContentById(id);
     }
 }
