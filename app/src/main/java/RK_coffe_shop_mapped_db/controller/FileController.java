@@ -22,13 +22,12 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<FileInfoDto> upload(@RequestParam("file") MultipartFile file, @RequestParam("extension") String extension, @RequestParam("path") Path path) {
+    public ResponseEntity<FileInfoDto> upload(@RequestParam("file") MultipartFile file, @RequestParam("extension") String extension) {
         try {
             return new ResponseEntity<>(
                     fileService.writeFileInMemory(new FileWithContentDto(
                             file.getInputStream(),
-                            extension,
-                            path
+                            extension
                     )),
                     HttpStatus.CREATED
             );

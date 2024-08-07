@@ -1,5 +1,6 @@
 package RK_coffe_shop_mapped_db.service;
 
+import RK_coffe_shop_mapped_db.db.repository.filerepository.FileProxy;
 import RK_coffe_shop_mapped_db.db.repository.filerepository.IFileRepository;
 import RK_coffe_shop_mapped_db.dto.file.FileInfoDto;
 import RK_coffe_shop_mapped_db.dto.file.FileWithContentDto;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class FileService {
-    private IFileRepository fileRepository;
+    private FileProxy fileRepository;
 
     public FileInfoDto writeFileInMemory(FileWithContentDto fileWithContentDto) {
         // there goes work with factorybean?
